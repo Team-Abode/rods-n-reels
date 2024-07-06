@@ -4,7 +4,8 @@
   "package": "com.teamabode.rodsnreels.core.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "DecoratedPotPatternsMixin"
+    "DecoratedPotPatternsMixin",
+    "OverworldBiomeBuilderMixin"
   ],
   "client": [],
   "injectors": {
