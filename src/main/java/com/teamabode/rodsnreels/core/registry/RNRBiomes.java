@@ -8,5 +8,5 @@ import net.minecraft.world.level.biome.Climate;
 
 public class RNRBiomes {
     public static final ResourceKey<Biome> OCEAN_TRENCH = ResourceKey.create(Registries.BIOME, RodsNReels.id("ocean_trench"));
-    public static final Climate.Parameter OCEAN_TRENCH_CONTINENTALNESS = Climate.Parameter.span(-0.90f, -0.75f);
+    public static final Climate.Parameter OCEAN_TRENCH_CONTINENTALNESS = Climate.Parameter.span(-0.90f, -0.70f);
 }

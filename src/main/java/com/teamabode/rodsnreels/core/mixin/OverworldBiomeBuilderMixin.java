@@ -25,7 +25,7 @@ public abstract class OverworldBiomeBuilderMixin {
 
     @Redirect(method = "addOffCoastBiomes", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/biome/OverworldBiomeBuilder;deepOceanContinentalness:Lnet/minecraft/world/level/biome/Climate$Parameter;", opcode = Opcodes.GETFIELD))
     public Climate.Parameter getDeepOceanContinentalness(OverworldBiomeBuilder instance) {
-        return Climate.Parameter.span(-0.75f, -0.455f);
+        return Climate.Parameter.span(-0.70f, -0.455f);
     }
 
     @Inject(method="addOffCoastBiomes", at = @At("TAIL"))
