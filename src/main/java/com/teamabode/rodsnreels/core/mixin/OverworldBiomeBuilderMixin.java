@@ -30,6 +30,8 @@ public abstract class OverworldBiomeBuilderMixin {
 
     @Inject(method="addOffCoastBiomes", at = @At("TAIL"))
     private void addOffCoastBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer, CallbackInfo ci) {
+        if(System.getProperty("fabric-api.datagen") != null) return;
+
         this.addSurfaceBiome(consumer, this.FULL_RANGE, this.FULL_RANGE, RNRBiomes.OCEAN_TRENCH_CONTINENTALNESS, this.FULL_RANGE, this.FULL_RANGE, 0.0f, RNRBiomes.OCEAN_TRENCH);
     }
 }

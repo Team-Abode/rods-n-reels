@@ -6,7 +6,7 @@
   "mixins": [
     "DecoratedPotPatternsMixin",
     "NoiseGeneratorSettingsMixin",
-    "OverworldBiomeBuilderMixin",
+    "OverworldBiomeBuilderMixin"
   ],
   "client": [
     "client.FogRendererMixin",

@@ -2,7 +2,10 @@ package com.teamabode.rodsnreels.datagen.server;
 
 import com.teamabode.rodsnreels.core.registry.RNRBiomes;
 import com.teamabode.rodsnreels.core.registry.tag.RNRBiomeTags;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.world.level.biome.Biomes;
@@ -10,9 +13,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class RNRBiomeTagsProvider extends BiomeTagsProvider {
-    public RNRBiomeTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> completableFuture) {
-        super(packOutput, completableFuture);
+public class RNRBiomeTagsProvider extends FabricTagProvider {
+    public RNRBiomeTagsProvider(FabricDataOutput packOutput, CompletableFuture<HolderLookup.Provider> completableFuture) {
+        super(packOutput, Registries.BIOME, completableFuture);
     }
 
     @Override
@@ -21,9 +24,9 @@ public class RNRBiomeTagsProvider extends BiomeTagsProvider {
     }
 
     private void appendHasSuspiciousBlock() {
-        this.tag(RNRBiomeTags.HAS_SUSPICIOUS_BLOCK)
+        this.getOrCreateTagBuilder(RNRBiomeTags.HAS_SUSPICIOUS_BLOCK)
                 .add(Biomes.RIVER)
-                .add(RNRBiomes.OCEAN_TRENCH);
+                .addOptional(RNRBiomes.OCEAN_TRENCH);
     }
 
 }

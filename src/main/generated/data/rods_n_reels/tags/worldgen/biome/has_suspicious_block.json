@@ -1,5 +1,9 @@
 {
   "values": [
-    "minecraft:river"
+    "minecraft:river",
+    {
+      "id": "rods_n_reels:ocean_trench",
+      "required": false
+    }
   ]
 }
