@@ -9,6 +9,8 @@ import com.teamabode.rodsnreels.datagen.RodsNReelsData;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.FogRenderer;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.material.FogType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -35,7 +37,7 @@ public class FogRendererMixin {
 
     @Inject(method = "setupColor", at = @At("TAIL"))
     private static void setupColor(Camera camera, float f, ClientLevel clientLevel, int i, float g, CallbackInfo ci) {
-        RodsNReelsClient.applyOceanTrenchEffect = camera.getFluidInCamera() == FogType.WATER && clientLevel.getBiome(camera.getBlockPosition()).is(RNRBiomes.OCEAN_TRENCH);
+        RodsNReelsClient.applyOceanTrenchEffect = camera.getFluidInCamera() == FogType.WATER && clientLevel.getBiome(camera.getBlockPosition()).is(RNRBiomes.OCEAN_TRENCH) && !((LivingEntity)camera.getEntity()).hasEffect(MobEffects.NIGHT_VISION) && !((LivingEntity)camera.getEntity()).hasEffect(MobEffects.BLINDNESS) && !((LivingEntity)camera.getEntity()).hasEffect(MobEffects.DARKNESS);
 
         darkness = RodsNReelsClient.getOceanTrenchFogDarkness((float) camera.getPosition().y);
     }
