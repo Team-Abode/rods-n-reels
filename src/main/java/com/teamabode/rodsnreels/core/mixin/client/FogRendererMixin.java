@@ -5,6 +5,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.teamabode.rodsnreels.RodsNReels;
 import com.teamabode.rodsnreels.client.RodsNReelsClient;
 import com.teamabode.rodsnreels.core.registry.RNRBiomes;
+import com.teamabode.rodsnreels.datagen.RodsNReelsData;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.FogRenderer;
@@ -28,7 +29,7 @@ public class FogRendererMixin {
         if(!RodsNReelsClient.applyOceanTrenchEffect) return;
 
         RenderSystem.setShaderFogShape(FogShape.SPHERE);
-        RenderSystem.setShaderFogStart(-1f);
+        RenderSystem.setShaderFogStart(-1f * RodsNReelsClient.getOceanTrenchFogDarkness((float) camera.getPosition().y));
         RenderSystem.setShaderFogEnd(RodsNReelsClient.getOceanTrenchFogDistance((float) camera.getPosition().y));
     }
 
