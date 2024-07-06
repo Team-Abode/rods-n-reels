@@ -1,1 +1,2 @@
 accessWidener v2 named
+accessible method net/minecraft/data/worldgen/SurfaceRuleData makeStateRule (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/levelgen/SurfaceRules$RuleSource;
