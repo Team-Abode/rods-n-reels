@@ -7,6 +7,6 @@
                 "Name": "minecraft:suspicious_gravel"
             }
         },
-        "loot_table": "minecraft:archaeology/desert_pyramid"
+        "loot_table": "rods_n_reels:archaeology/river_bank"
     }
 }

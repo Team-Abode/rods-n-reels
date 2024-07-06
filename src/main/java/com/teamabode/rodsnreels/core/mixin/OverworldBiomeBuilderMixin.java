@@ -3,7 +3,6 @@ package com.teamabode.rodsnreels.core.mixin;
 import com.mojang.datafixers.util.Pair;
 import com.teamabode.rodsnreels.core.registry.RNRBiomes;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.biome.OverworldBiomeBuilder;
@@ -11,7 +10,6 @@ import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -32,6 +30,6 @@ public abstract class OverworldBiomeBuilderMixin {
 
     @Inject(method="addOffCoastBiomes", at = @At("TAIL"))
     private void addOffCoastBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer, CallbackInfo ci) {
-        this.addSurfaceBiome(consumer, this.FULL_RANGE, this.FULL_RANGE, RNRBiomes.ULTRA_DEEP_OCEAN_CONTINENTALNESS, this.FULL_RANGE, this.FULL_RANGE, 0.0f, RNRBiomes.ULTRA_DEEP_OCEAN);
+        this.addSurfaceBiome(consumer, this.FULL_RANGE, this.FULL_RANGE, RNRBiomes.OCEAN_TRENCH_CONTINENTALNESS, this.FULL_RANGE, this.FULL_RANGE, 0.0f, RNRBiomes.OCEAN_TRENCH);
     }
 }
