@@ -1,5 +1,6 @@
 package com.teamabode.rodsnreels.datagen.server;
 
+import com.teamabode.rodsnreels.core.registry.RNRBiomes;
 import com.teamabode.rodsnreels.core.registry.tag.RNRBiomeTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -21,7 +22,8 @@ public class RNRBiomeTagsProvider extends BiomeTagsProvider {
 
     private void appendHasSuspiciousBlock() {
         this.tag(RNRBiomeTags.HAS_SUSPICIOUS_BLOCK)
-                .add(Biomes.RIVER);
+                .add(Biomes.RIVER)
+                .add(RNRBiomes.OCEAN_TRENCH);
     }
 
 }
