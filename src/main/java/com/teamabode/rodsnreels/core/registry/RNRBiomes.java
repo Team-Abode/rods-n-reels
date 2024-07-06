@@ -7,6 +7,6 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 
 public class RNRBiomes {
-    public static final ResourceKey<Biome> ULTRA_DEEP_OCEAN = ResourceKey.create(Registries.BIOME, RodsNReels.id("ultra_deep_ocean"));
-    public static final Climate.Parameter ULTRA_DEEP_OCEAN_CONTINENTALNESS = Climate.Parameter.span(-0.90f, -0.80f);
+    public static final ResourceKey<Biome> OCEAN_TRENCH = ResourceKey.create(Registries.BIOME, RodsNReels.id("ocean_trench"));
+    public static final Climate.Parameter OCEAN_TRENCH_CONTINENTALNESS = Climate.Parameter.span(-0.90f, -0.80f);
 }
