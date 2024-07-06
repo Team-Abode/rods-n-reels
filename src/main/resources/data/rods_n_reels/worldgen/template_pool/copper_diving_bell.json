@@ -1,0 +1,45 @@
+{
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 7,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "rods_n_reels:copper_diving_bell_side",
+        "override_liquid_settings": "apply_waterlogging",
+        "processors": "rods_n_reels:copper_diving_bell"
+      }
+    },
+    {
+      "weight": 4,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "rods_n_reels:copper_diving_bell_side_chest",
+        "override_liquid_settings": "apply_waterlogging",
+        "processors": "rods_n_reels:copper_diving_bell"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "rods_n_reels:copper_diving_bell_up",
+        "override_liquid_settings": "apply_waterlogging",
+        "processors": "rods_n_reels:copper_diving_bell"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "rods_n_reels:copper_diving_bell_up_chest",
+        "override_liquid_settings": "apply_waterlogging",
+        "processors": "rods_n_reels:copper_diving_bell"
+      }
+    }
+  ]
+}

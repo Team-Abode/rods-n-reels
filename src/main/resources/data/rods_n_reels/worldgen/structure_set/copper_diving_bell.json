@@ -1,0 +1,15 @@
+{
+  "structures": [
+    {
+      "structure": "rods_n_reels:copper_diving_bell",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 220553806,
+    "frequency": 1,
+    "spacing": 4,
+    "separation": 1
+  }
+}
