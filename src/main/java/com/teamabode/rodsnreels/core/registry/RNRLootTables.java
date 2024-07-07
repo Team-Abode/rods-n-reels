@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.storage.loot.LootTable;
 
 public class RNRLootTables {
+    public static final ResourceKey<LootTable> FISHING_JUNK = register("gameplay/fishing/junk");
     public static final ResourceKey<LootTable> SQUID_MEAT = register("entities/squid_meat");
 
     private static ResourceKey<LootTable> register(String string) {

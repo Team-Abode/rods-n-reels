@@ -4,6 +4,7 @@ import com.teamabode.rodsnreels.core.registry.RNRItems;
 import com.teamabode.rodsnreels.core.registry.RNRLootTables;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -14,6 +15,9 @@ public class RNRLootTableEvents {
         LootTableEvents.MODIFY.register((key, tableBuilder, source) -> {
             if (key.equals(BuiltInLootTables.FISHING_FISH)) {
                 tableBuilder.modifyPools(builder -> builder.add(LootItem.lootTableItem(RNRItems.SQUID).setWeight(15)));
+            }
+            if (key.equals(BuiltInLootTables.FISHING_JUNK)) {
+                tableBuilder.modifyPools(builder -> builder.add(NestedLootTable.lootTableReference(RNRLootTables.FISHING_JUNK).setWeight(30)));
             }
             if (key.equals(EntityType.SQUID.getDefaultLootTable()) || key.equals(EntityType.GLOW_SQUID.getDefaultLootTable())) {
                 tableBuilder.withPool(LootPool.lootPool().add(NestedLootTable.lootTableReference(RNRLootTables.SQUID_MEAT)));
