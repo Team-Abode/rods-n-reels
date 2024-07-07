@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "rods_n_reels:squid"
+  },
+  "result": {
+    "id": "rods_n_reels:cooked_squid"
+  }
+}

@@ -21,7 +21,7 @@ public class RNRModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerators generator) {
         generator.generateFlatItem(RNRItems.GILLS_POTTERY_SHERD, ModelTemplates.FLAT_ITEM);
 
-        generator.generateFlatItem(RNRItems.RAW_SQUID, ModelTemplates.FLAT_ITEM);
-        generator.generateFlatItem(RNRItems.CALAMARI, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(RNRItems.SQUID, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(RNRItems.COOKED_SQUID, ModelTemplates.FLAT_ITEM);
     }
 }

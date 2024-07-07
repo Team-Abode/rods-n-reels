@@ -31,6 +31,9 @@ public class RodsNReels implements ModInitializer {
 
 
     public static void registerItemGroupEvents() {
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS).register(entries -> {
+            entries.addBefore(Items.COD, RNRItems.SQUID, RNRItems.COOKED_SQUID);
+        });
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register(entries -> {
             entries.addBefore(Items.GUSTER_POTTERY_SHERD, RNRItems.GILLS_POTTERY_SHERD);
         });
