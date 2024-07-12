@@ -1,6 +1,6 @@
 {
   "type": "minecraft:jigsaw",
-  "biomes": "rods_n_reels:ocean_trench",
+  "biomes": "#rods_n_reels:has_copper_diving_bell",
   "step": "surface_structures",
   "spawn_overrides": {
     "monster": {

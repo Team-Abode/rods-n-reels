@@ -21,6 +21,12 @@ public class RNRBiomeTagsProvider extends FabricTagProvider {
     @Override
     protected void addTags(HolderLookup.@NotNull Provider arg) {
         appendHasSuspiciousBlock();
+
+        this.getOrCreateTagBuilder(RNRBiomeTags.HAS_COPPER_DIVING_BELL)
+                .addOptional(RNRBiomes.OCEAN_TRENCH);
+
+        this.getOrCreateTagBuilder(RNRBiomeTags.HAS_OCEAN_CITY_RUINS)
+                .addOptional(RNRBiomes.OCEAN_TRENCH);
     }
 
     private void appendHasSuspiciousBlock() {

@@ -2,6 +2,7 @@ package com.teamabode.rodsnreels;
 
 import com.google.common.reflect.Reflection;
 import com.teamabode.rodsnreels.common.event.RNRLootTableEvents;
+import com.teamabode.rodsnreels.core.registry.RNRBlocks;
 import com.teamabode.rodsnreels.core.registry.RNRFeatures;
 import com.teamabode.rodsnreels.core.registry.RNRItems;
 import com.teamabode.rodsnreels.core.registry.RNRPlacedFeatures;
@@ -23,6 +24,7 @@ public class RodsNReels implements ModInitializer {
         RNRPlacedFeatures.createBiomeModifications();
         registerItemGroupEvents();
         RNRLootTableEvents.modifyVanillaLootTables();
+        RNRBlocks.register();
     }
 
     public static ResourceLocation id(String name) {
