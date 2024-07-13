@@ -17,7 +17,7 @@ public class RodsNReelsClient implements ClientModInitializer {
     public static float getOceanTrenchFogDistance(float y) {
         y += 64f;
 
-        return (float) (Math.pow(y, 1.2f) / 20f + 10f);
+        return (float) (Math.pow(y, 1.2f) / 20f + 25f);
     }
 
     public static float getOceanTrenchFogDarkness(float y) {

@@ -15,8 +15,13 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
 public class RNRBlocks {
-    public static final Block BUBBBLEDEW_STEM = register("bubbledew_stem", new BubbledewStem(BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.WET_GRASS).pushReaction(PushReaction.DESTROY)));
-    public static final Block BUBBBLEDEW = register("bubbledew", new Bubbledew(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE).instrument(NoteBlockInstrument.DIDGERIDOO).strength(1.0f).sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).lightLevel(blockState -> 8)));
+    public static final Block BUBBBLEDEW_STEM = new BubbledewStem(BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.WET_GRASS).pushReaction(PushReaction.DESTROY));
+    public static final Block BUBBBLEDEW = new Bubbledew(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE).instrument(NoteBlockInstrument.DIDGERIDOO).strength(1.0f).sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).lightLevel(blockState -> 15));
+
+    public static void registerBlocks() {
+        register("bubbledew_stem", BUBBBLEDEW_STEM);
+        register("bubbledew", BUBBBLEDEW);
+    }
 
     private static Block register(String name, Block block) {
         var registry = Registry.register(BuiltInRegistries.BLOCK, RodsNReels.id(name), block);
