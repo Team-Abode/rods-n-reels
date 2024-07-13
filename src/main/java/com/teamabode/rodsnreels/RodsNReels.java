@@ -24,7 +24,6 @@ public class RodsNReels implements ModInitializer {
         RNRPlacedFeatures.createBiomeModifications();
         registerItemGroupEvents();
         RNRLootTableEvents.modifyVanillaLootTables();
-        RNRBlocks.register();
     }
 
     public static ResourceLocation id(String name) {
