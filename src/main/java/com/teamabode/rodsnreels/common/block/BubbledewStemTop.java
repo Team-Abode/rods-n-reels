@@ -5,6 +5,7 @@ import com.teamabode.rodsnreels.RodsNReels;
 import com.teamabode.rodsnreels.core.registry.RNRBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
@@ -19,14 +21,25 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.ATTACHED;
+
 public class BubbledewStemTop extends GrowingPlantHeadBlock implements LiquidBlockContainer {
     public static final MapCodec<BubbledewStemTop> CODEC = BubbledewStemTop.simpleCodec(BubbledewStemTop::new);
-//    public static final BooleanProperty
-    
+
     protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 9.0, 16.0);
 
     public BubbledewStemTop(Properties properties) {
         super(properties, Direction.UP, SHAPE, true, 0.14);
+
+        this.registerDefaultState(this.stateDefinition.any().setValue(ATTACHED, false).setValue(AGE, 0));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(ATTACHED);
+        builder.add(AGE);
     }
 
     public MapCodec<BubbledewStemTop> codec() {
@@ -42,6 +55,20 @@ public class BubbledewStemTop extends GrowingPlantHeadBlock implements LiquidBlo
         if(!aboveBlockstate.isAir() && !aboveBlockstate.is(Blocks.WATER)) return;
 
         serverLevel.setBlockAndUpdate(blockPos.above(), RNRBlocks.BUBBBLEDEW.defaultBlockState());
+        serverLevel.setBlockAndUpdate(blockPos, blockState.setValue(ATTACHED, true));
+    }
+
+    @Override
+    protected BlockState updateShape(BlockState blockState, Direction direction, BlockState otherState, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
+        BlockState state = super.updateShape(blockState, direction, otherState, levelAccessor, blockPos, blockPos2);
+
+        if(!state.is(blockState.getBlock())) return state;
+
+        if(direction != Direction.UP) return state;
+
+        if (otherState.is(RNRBlocks.BUBBBLEDEW)) return state;
+
+        return blockState.setValue(ATTACHED, false);
     }
 
     @Override
