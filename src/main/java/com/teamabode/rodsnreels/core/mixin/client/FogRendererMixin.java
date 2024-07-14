@@ -31,7 +31,7 @@ public class FogRendererMixin {
         if(!RodsNReelsClient.applyOceanTrenchEffect) return;
 
         RenderSystem.setShaderFogShape(FogShape.SPHERE);
-        RenderSystem.setShaderFogStart(-1f * RodsNReelsClient.getOceanTrenchFogDarkness((float) camera.getPosition().y));
+        RenderSystem.setShaderFogStart(0f);
         RenderSystem.setShaderFogEnd(RodsNReelsClient.getOceanTrenchFogDistance((float) camera.getPosition().y));
     }
 
