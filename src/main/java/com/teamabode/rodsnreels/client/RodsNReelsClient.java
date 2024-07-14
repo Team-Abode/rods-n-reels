@@ -12,6 +12,7 @@ public class RodsNReelsClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(RNRBlocks.BUBBBLEDEW_STEM, RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(RNRBlocks.BUBBBLEDEW_STEM_TOP, RenderType.cutout());
     }
 
     public static float getOceanTrenchFogDistance(float y) {

@@ -33,7 +33,7 @@ public class BubbledewStem extends GrowingPlantBodyBlock implements LiquidBlockC
     }
 
     @Override
-    protected boolean canAttachTo(BlockState blockState) {
+    public boolean canAttachTo(BlockState blockState) {
         return this.getHeadBlock().canAttachTo(blockState);
     }
 
