@@ -22,8 +22,8 @@ public class RNRBlocks {
     public static final Bubbledew BUBBBLEDEW = new Bubbledew(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE).instrument(NoteBlockInstrument.DIDGERIDOO).strength(1.0f).sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).lightLevel(blockState -> 15));
 
     public static void registerBlocks() {
-        register("bubbledew_stem", BUBBBLEDEW_STEM);
-        Registry.register(BuiltInRegistries.BLOCK, RodsNReels.id("bubbledew_stem_top"), BUBBBLEDEW_STEM_TOP);
+        Registry.register(BuiltInRegistries.BLOCK, RodsNReels.id("bubbledew_stem"), BUBBBLEDEW_STEM);
+        register("bubbledew_stem_top", BUBBBLEDEW_STEM_TOP);
 
         register("bubbledew", BUBBBLEDEW);
     }

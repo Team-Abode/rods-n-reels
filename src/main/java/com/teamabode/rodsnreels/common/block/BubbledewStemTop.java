@@ -1,15 +1,18 @@
 package com.teamabode.rodsnreels.common.block;
 
 import com.mojang.serialization.MapCodec;
+import com.teamabode.rodsnreels.RodsNReels;
 import com.teamabode.rodsnreels.core.registry.RNRBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -18,6 +21,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class BubbledewStemTop extends GrowingPlantHeadBlock implements LiquidBlockContainer {
     public static final MapCodec<BubbledewStemTop> CODEC = BubbledewStemTop.simpleCodec(BubbledewStemTop::new);
+//    public static final BooleanProperty
+    
     protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 9.0, 16.0);
 
     public BubbledewStemTop(Properties properties) {
@@ -26,6 +31,17 @@ public class BubbledewStemTop extends GrowingPlantHeadBlock implements LiquidBlo
 
     public MapCodec<BubbledewStemTop> codec() {
         return CODEC;
+    }
+
+    @Override
+    protected void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
+        if (randomSource.nextInt(1) != 0) return;
+
+        BlockState aboveBlockstate = serverLevel.getBlockState(blockPos.above());
+
+        if(!aboveBlockstate.isAir() && !aboveBlockstate.is(Blocks.WATER)) return;
+
+        serverLevel.setBlockAndUpdate(blockPos.above(), RNRBlocks.BUBBBLEDEW.defaultBlockState());
     }
 
     @Override
