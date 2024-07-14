@@ -18,6 +18,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
@@ -37,6 +39,11 @@ public class BubbledewStemTop extends GrowingPlantHeadBlock implements LiquidBlo
     }
 
     @Override
+    protected VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
+        return blockState.getValue(ATTACHED) ? Shapes.block() : SHAPE;
+    }
+
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(ATTACHED);
         builder.add(AGE);
@@ -52,7 +59,7 @@ public class BubbledewStemTop extends GrowingPlantHeadBlock implements LiquidBlo
 
         BlockState aboveBlockstate = serverLevel.getBlockState(blockPos.above());
 
-        if(!aboveBlockstate.isAir() && !aboveBlockstate.is(Blocks.WATER)) return;
+        if(!aboveBlockstate.is(Blocks.WATER)) return;
 
         serverLevel.setBlockAndUpdate(blockPos.above(), RNRBlocks.BUBBBLEDEW.defaultBlockState());
         serverLevel.setBlockAndUpdate(blockPos, blockState.setValue(ATTACHED, true));
