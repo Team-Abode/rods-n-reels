@@ -8,33 +8,35 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class BubbledewStem extends GrowingPlantBodyBlock implements LiquidBlockContainer {
-    public static final MapCodec<BubbledewStem> CODEC = BubbledewStem.simpleCodec(BubbledewStem::new);
+public class BubbledewStemTop extends GrowingPlantHeadBlock implements LiquidBlockContainer {
+    public static final MapCodec<BubbledewStemTop> CODEC = BubbledewStemTop.simpleCodec(BubbledewStemTop::new);
+    protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 9.0, 16.0);
+    private static final double GROW_PER_TICK_PROBABILITY = 0.14;
 
-    public BubbledewStem(BlockBehaviour.Properties properties) {
-        super(properties, Direction.UP, Shapes.block(), true);
-    }
-
-    public MapCodec<BubbledewStem> codec() {
-        return CODEC;
+    public BubbledewStemTop(Properties properties) {
+        super(properties, Direction.UP, SHAPE, true, 0.14);
     }
 
     @Override
-    protected GrowingPlantHeadBlock getHeadBlock() {
-        return RNRBlocks.BUBBBLEDEW_STEM_TOP;
+    protected boolean canGrowInto(BlockState blockState) {
+        return blockState.is(Blocks.WATER);
+    }
+
+    @Override
+    protected Block getBodyBlock() {
+        return RNRBlocks.BUBBBLEDEW_STEM;
     }
 
     @Override
     protected boolean canAttachTo(BlockState blockState) {
-        return this.getHeadBlock().canAttachTo(blockState);
+        return !blockState.is(Blocks.MAGMA_BLOCK);
     }
 
     @Override
