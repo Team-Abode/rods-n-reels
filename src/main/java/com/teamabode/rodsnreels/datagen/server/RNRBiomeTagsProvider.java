@@ -6,8 +6,6 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.world.level.biome.Biomes;
 import org.jetbrains.annotations.NotNull;
 
@@ -25,7 +23,7 @@ public class RNRBiomeTagsProvider extends FabricTagProvider {
         this.getOrCreateTagBuilder(RNRBiomeTags.HAS_COPPER_DIVING_BELL)
                 .addOptional(RNRBiomes.OCEAN_TRENCH);
 
-        this.getOrCreateTagBuilder(RNRBiomeTags.HAS_OCEAN_CITY_RUINS)
+        this.getOrCreateTagBuilder(RNRBiomeTags.HAS_RUINS)
                 .addOptional(RNRBiomes.OCEAN_TRENCH);
     }
 

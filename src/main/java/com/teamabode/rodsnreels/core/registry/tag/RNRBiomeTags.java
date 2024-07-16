@@ -8,7 +8,7 @@ import net.minecraft.world.level.biome.Biome;
 public class RNRBiomeTags {
     public static final TagKey<Biome> HAS_SUSPICIOUS_BLOCK = create("has_suspicious_block");
     public static final TagKey<Biome> HAS_COPPER_DIVING_BELL = create("has_copper_diving_bell");
-    public static final TagKey<Biome> HAS_OCEAN_CITY_RUINS = create("has_ocean_city_ruins");
+    public static final TagKey<Biome> HAS_RUINS = create("has_ruins");
 
     private static TagKey<Biome> create(String id) {
         return TagKey.create(Registries.BIOME, RodsNReels.id(id));
