@@ -1,10 +1,9 @@
-package com.teamabode.rodsnreels.common.event;
+package com.teamabode.rodsnreels.core.misc;
 
 import com.teamabode.rodsnreels.core.registry.RNRItems;
 import com.teamabode.rodsnreels.core.registry.RNRLootTables;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;

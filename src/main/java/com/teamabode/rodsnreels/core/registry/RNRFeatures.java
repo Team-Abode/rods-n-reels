@@ -11,6 +11,8 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 public class RNRFeatures {
     public static final Feature<SuspiciousBlockConfiguration> SUSPICIOUS_BLOCK = register("suspicious_block", new SuspiciousBlockFeature());
 
+    public static void register() {}
+
     private static <FC extends FeatureConfiguration> Feature<FC> register(String name, Feature<FC> feature) {
         return Registry.register(BuiltInRegistries.FEATURE, RodsNReels.id(name), feature);
     }

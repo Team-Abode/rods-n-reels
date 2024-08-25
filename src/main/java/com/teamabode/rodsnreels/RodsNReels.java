@@ -1,7 +1,6 @@
 package com.teamabode.rodsnreels;
 
-import com.google.common.reflect.Reflection;
-import com.teamabode.rodsnreels.common.event.RNRLootTableEvents;
+import com.teamabode.rodsnreels.core.misc.RNRLootTableEvents;
 import com.teamabode.rodsnreels.core.registry.RNRBlocks;
 import com.teamabode.rodsnreels.core.registry.RNRFeatures;
 import com.teamabode.rodsnreels.core.registry.RNRItems;
@@ -20,17 +19,17 @@ public class RodsNReels implements ModInitializer {
 
     public void onInitialize() {
         RNRItems.register();
-        Reflection.initialize(RNRFeatures.class);
+        RNRBlocks.register();
+        RNRFeatures.register();
+
         RNRPlacedFeatures.createBiomeModifications();
-        registerItemGroupEvents();
         RNRLootTableEvents.modifyVanillaLootTables();
-        RNRBlocks.registerBlocks();
+        registerItemGroupEvents();
     }
 
     public static ResourceLocation id(String name) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
     }
-
 
     public static void registerItemGroupEvents() {
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS).register(entries -> {

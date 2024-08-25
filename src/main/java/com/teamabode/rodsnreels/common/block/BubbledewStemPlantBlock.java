@@ -16,20 +16,11 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.Shapes;
 import org.jetbrains.annotations.Nullable;
 
-public class BubbledewStem extends GrowingPlantBodyBlock implements LiquidBlockContainer {
-    public static final MapCodec<BubbledewStem> CODEC = BubbledewStem.simpleCodec(BubbledewStem::new);
+public class BubbledewStemPlantBlock extends GrowingPlantBodyBlock implements LiquidBlockContainer {
+    public static final MapCodec<BubbledewStemPlantBlock> CODEC = simpleCodec(BubbledewStemPlantBlock::new);
 
-    public BubbledewStem(BlockBehaviour.Properties properties) {
+    public BubbledewStemPlantBlock(BlockBehaviour.Properties properties) {
         super(properties, Direction.UP, Shapes.block(), true);
-    }
-
-    public MapCodec<BubbledewStem> codec() {
-        return CODEC;
-    }
-
-    @Override
-    protected GrowingPlantHeadBlock getHeadBlock() {
-        return RNRBlocks.BUBBBLEDEW_STEM_TOP;
     }
 
     @Override
@@ -43,6 +34,11 @@ public class BubbledewStem extends GrowingPlantBodyBlock implements LiquidBlockC
     }
 
     @Override
+    protected GrowingPlantHeadBlock getHeadBlock() {
+        return (GrowingPlantHeadBlock) RNRBlocks.BUBBLEDEW_STEM;
+    }
+
+    @Override
     public boolean canPlaceLiquid(@Nullable Player player, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, Fluid fluid) {
         return false;
     }
@@ -50,5 +46,10 @@ public class BubbledewStem extends GrowingPlantBodyBlock implements LiquidBlockC
     @Override
     public boolean placeLiquid(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
         return false;
+    }
+
+    @Override
+    public MapCodec<BubbledewStemPlantBlock> codec() {
+        return CODEC;
     }
 }
