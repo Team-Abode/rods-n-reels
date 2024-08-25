@@ -1,10 +1,7 @@
 package com.teamabode.rodsnreels;
 
 import com.teamabode.rodsnreels.core.misc.RNRLootTableEvents;
-import com.teamabode.rodsnreels.core.registry.RNRBlocks;
-import com.teamabode.rodsnreels.core.registry.RNRFeatures;
-import com.teamabode.rodsnreels.core.registry.RNRItems;
-import com.teamabode.rodsnreels.core.registry.RNRPlacedFeatures;
+import com.teamabode.rodsnreels.core.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.resources.ResourceLocation;
@@ -21,6 +18,7 @@ public class RodsNReels implements ModInitializer {
         RNRItems.register();
         RNRBlocks.register();
         RNRFeatures.register();
+        RNRDecoratedPotPatterns.register();
 
         RNRPlacedFeatures.createBiomeModifications();
         RNRLootTableEvents.modifyVanillaLootTables();

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "rods_n_reels:block/bubbledew_stem_top"
-  }
-}

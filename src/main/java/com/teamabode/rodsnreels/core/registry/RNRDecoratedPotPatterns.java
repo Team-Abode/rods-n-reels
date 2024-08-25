@@ -18,7 +18,7 @@ public class RNRDecoratedPotPatterns {
         return ResourceKey.create(Registries.DECORATED_POT_PATTERN, RodsNReels.id(name));
     }
 
-    public static DecoratedPotPattern register(ResourceKey<DecoratedPotPattern> key, String name) {
+    private static DecoratedPotPattern register(ResourceKey<DecoratedPotPattern> key, String name) {
         return Registry.register(BuiltInRegistries.DECORATED_POT_PATTERN, key, new DecoratedPotPattern(RodsNReels.id(name)));
     }
 }

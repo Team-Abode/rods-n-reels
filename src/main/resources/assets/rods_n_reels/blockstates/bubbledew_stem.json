@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "attached=false": {
       "model": "rods_n_reels:block/bubbledew_stem"
+    },
+    "attached=true": {
+      "model": "rods_n_reels:block/bubbledew_stem_attached"
     }
   }
 }

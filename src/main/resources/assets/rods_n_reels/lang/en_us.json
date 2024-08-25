@@ -1,5 +1,9 @@
 {
   "item.rods_n_reels.cooked_squid": "Calamari",
   "item.rods_n_reels.gills_pottery_sherd": "Gills Pottery Sherd",
-  "item.rods_n_reels.squid": "Raw Squid"
+  "item.rods_n_reels.squid": "Raw Squid",
+
+  "block.rods_n_reels.bubbledew": "Bubbledew",
+  "block.rods_n_reels.bubbledew_stem": "Bubbledew Stem",
+  "block.rods_n_reels.bubbledew_stem_plant": "Bubbledew Stem Plant"
 }
