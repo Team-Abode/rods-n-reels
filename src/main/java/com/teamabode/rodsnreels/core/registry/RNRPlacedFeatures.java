@@ -11,6 +11,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class RNRPlacedFeatures {
     public static final ResourceKey<PlacedFeature> SUSPICIOUS_GRAVEL = create("suspicious_gravel");
+    public static final ResourceKey<PlacedFeature> RUIN = create("ruin");
 
     private static ResourceKey<PlacedFeature> create(String id) {
         return ResourceKey.create(Registries.PLACED_FEATURE, RodsNReels.id(id));
@@ -18,5 +19,6 @@ public class RNRPlacedFeatures {
 
     public static void createBiomeModifications() {
         BiomeModifications.addFeature(BiomeSelectors.tag(RNRBiomeTags.HAS_SUSPICIOUS_BLOCK), GenerationStep.Decoration.VEGETAL_DECORATION, SUSPICIOUS_GRAVEL);
+        BiomeModifications.addFeature(BiomeSelectors.tag(RNRBiomeTags.HAS_RUINS), GenerationStep.Decoration.SURFACE_STRUCTURES, RUIN);
     }
 }

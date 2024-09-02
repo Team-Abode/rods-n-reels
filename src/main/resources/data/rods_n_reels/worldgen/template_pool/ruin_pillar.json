@@ -10,6 +10,46 @@
         "override_liquid_settings": "apply_waterlogging",
         "processors": []
       }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "rods_n_reels:ruin_pillar_half",
+        "override_liquid_settings": "apply_waterlogging",
+        "processors": []
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "rods_n_reels:ruin_pillar_quarter",
+        "override_liquid_settings": "apply_waterlogging",
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "rods_n_reels:ruin_pillar_bar",
+        "override_liquid_settings": "apply_waterlogging",
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "rods_n_reels:ruin_pillar_bar_double",
+        "override_liquid_settings": "apply_waterlogging",
+        "processors": []
+      }
     }
   ]
 }
