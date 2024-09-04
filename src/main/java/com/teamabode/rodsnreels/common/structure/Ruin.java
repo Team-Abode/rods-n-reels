@@ -80,7 +80,7 @@ public class Ruin extends Structure {
             BlockPos placeBlockPos = null;
 
             for(int attempt = 0; attempt < 5; attempt++) {
-                BlockPos startBlockPos = generationContext.chunkPos().getBlockAt(generationContext.random().nextInt(-30, 30), 0, generationContext.random().nextInt(-30, 30));
+                BlockPos startBlockPos = generationContext.chunkPos().getBlockAt(generationContext.random().nextInt(-20, 20), 0, generationContext.random().nextInt(-20, 20));
 
                 BlockPos groundBlockPos = new BlockPos(
                         startBlockPos.getX(),
