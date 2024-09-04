@@ -3,6 +3,10 @@ package com.teamabode.rodsnreels.common.structure;
 import com.mojang.serialization.MapCodec;
 import com.teamabode.rodsnreels.RodsNReels;
 import com.teamabode.rodsnreels.core.registry.RNRStructures;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
@@ -34,9 +38,14 @@ public class Ruin extends Structure {
     }
 
     private static void generatePieces(StructurePiecesBuilder structurePiecesBuilder, Structure.GenerationContext generationContext) {
+        HolderGetter<StructureTemplatePool> pools = generationContext.registryAccess().lookupOrThrow(Registries.TEMPLATE_POOL);
+        Holder<StructureTemplatePool> ruin_pillar_template_pool = pools.getOrThrow(ResourceKey.create(Registries.TEMPLATE_POOL, RodsNReels.id("ruin_pillar")));
+
+        StructurePoolElement poolElement = ruin_pillar_template_pool.value().getRandomTemplate(generationContext.random());
+
         structurePiecesBuilder.addPiece(new PoolElementStructurePiece(
                 generationContext.structureTemplateManager(),
-                SinglePoolElement.single(RodsNReels.id("ruin_pillar").toString()).apply(StructureTemplatePool.Projection.RIGID),
+                poolElement,
                 generationContext.chunkPos().getBlockAt(0 , 63, 0), 2,
                 Rotation.NONE,
                 BoundingBox.infinite(),
