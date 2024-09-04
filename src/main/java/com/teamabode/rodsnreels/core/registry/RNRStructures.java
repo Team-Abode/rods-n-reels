@@ -19,4 +19,8 @@ import net.minecraft.world.level.levelgen.structure.structures.OceanMonumentStru
 
 public class RNRStructures {
     public static final StructureType<Ruin> RUIN = Registry.register(BuiltInRegistries.STRUCTURE_TYPE, RodsNReels.id("ruin"), () -> Ruin.CODEC);
+
+    public static void register() {
+
+    }
 }
