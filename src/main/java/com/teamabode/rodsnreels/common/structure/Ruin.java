@@ -21,6 +21,7 @@ import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class Ruin extends Structure {
@@ -42,6 +43,25 @@ public class Ruin extends Structure {
         return RNRStructures.RUIN;
     }
 
+    private static int getPlacementHeight(BlockPos basePos, StructurePoolElement poolElement, Rotation rotation, Structure.GenerationContext generationContext) {
+        BoundingBox boundingBox = poolElement.getBoundingBox(generationContext.structureTemplateManager(), basePos, rotation);
+
+        List<BlockPos> corners = List.of(
+                new BlockPos(boundingBox.minX(), 0, boundingBox.minZ()),
+                new BlockPos(boundingBox.maxX(), 0, boundingBox.minZ()),
+                new BlockPos(boundingBox.minX(), 0, boundingBox.maxZ()),
+                new BlockPos(boundingBox.maxX(), 0, boundingBox.maxZ())
+        );
+
+        int y = Integer.MAX_VALUE;
+
+        for(BlockPos corner: corners) {
+            y = Integer.min(y, generationContext.chunkGenerator().getFirstFreeHeight(corner.getX(), corner.getZ(), Heightmap.Types.OCEAN_FLOOR_WG, generationContext.heightAccessor(), generationContext.randomState()));
+        }
+
+        return y;
+    };
+
     private static void generatePieces(StructurePiecesBuilder structurePiecesBuilder, Structure.GenerationContext generationContext) {
         HolderGetter<StructureTemplatePool> pools = generationContext.registryAccess().lookupOrThrow(Registries.TEMPLATE_POOL);
         Holder<StructureTemplatePool> ruin_gateway_template_pool = pools.getOrThrow(ResourceKey.create(Registries.TEMPLATE_POOL, RodsNReels.id("ruin_gateway")));
@@ -54,13 +74,14 @@ public class Ruin extends Structure {
         StructurePoolElement gateWayPoolElement = ruin_gateway_template_pool.value().getRandomTemplate(generationContext.random());
 
         BlockPos gatewayStartBlockPos = generationContext.chunkPos().getBlockAt(0, 0, 0);
+        Rotation gatewayRotation = Rotation.getRandom(generationContext.random());
         BlockPos gatewayBlockPos = new BlockPos(
                 gatewayStartBlockPos.getX(),
-                generationContext.chunkGenerator().getFirstFreeHeight(gatewayStartBlockPos.getX(), gatewayStartBlockPos.getZ(), Heightmap.Types.OCEAN_FLOOR_WG, generationContext.heightAccessor(), generationContext.randomState()) - 2,
+                getPlacementHeight(gatewayStartBlockPos, gateWayPoolElement, gatewayRotation, generationContext) - 2,
                 gatewayStartBlockPos.getZ()
         );
 
-        BoundingBox gateWayBoundingBox = gateWayPoolElement.getBoundingBox(generationContext.structureTemplateManager(), gatewayBlockPos, Rotation.NONE);
+        BoundingBox gateWayBoundingBox = gateWayPoolElement.getBoundingBox(generationContext.structureTemplateManager(), gatewayBlockPos, gatewayRotation);
 
         boundingBoxes.add(gateWayBoundingBox);
 
@@ -69,7 +90,7 @@ public class Ruin extends Structure {
                 gateWayPoolElement,
                 gatewayBlockPos,
                 0,
-                Rotation.NONE,
+                gatewayRotation,
                 BoundingBox.infinite(),
                 LiquidSettings.APPLY_WATERLOGGING
         ));
@@ -78,17 +99,18 @@ public class Ruin extends Structure {
             StructurePoolElement poolElement = ruin_pillar_template_pool.value().getRandomTemplate(generationContext.random());
 
             BlockPos placeBlockPos = null;
+            Rotation rotation = Rotation.getRandom(generationContext.random());
 
             for(int attempt = 0; attempt < 5; attempt++) {
                 BlockPos startBlockPos = generationContext.chunkPos().getBlockAt(generationContext.random().nextInt(-20, 20), 0, generationContext.random().nextInt(-20, 20));
 
                 BlockPos groundBlockPos = new BlockPos(
                         startBlockPos.getX(),
-                        generationContext.chunkGenerator().getFirstFreeHeight(startBlockPos.getX(), startBlockPos.getZ(), Heightmap.Types.OCEAN_FLOOR_WG, generationContext.heightAccessor(), generationContext.randomState()) - 2,
+                        getPlacementHeight(startBlockPos, poolElement, rotation, generationContext) - 2,
                         startBlockPos.getZ()
                 );
 
-                BoundingBox boundingBox = poolElement.getBoundingBox(generationContext.structureTemplateManager(), groundBlockPos, Rotation.NONE);
+                BoundingBox boundingBox = poolElement.getBoundingBox(generationContext.structureTemplateManager(), groundBlockPos, rotation);
 
                 boolean collided = false;
 
@@ -113,7 +135,7 @@ public class Ruin extends Structure {
                     poolElement,
                     placeBlockPos,
                     0,
-                    Rotation.NONE,
+                    rotation,
                     BoundingBox.infinite(),
                     LiquidSettings.APPLY_WATERLOGGING
             ));
