@@ -21,8 +21,6 @@ public class RodsNReels implements ModInitializer {
         RNRDecoratedPotPatterns.register();
         RNRStructures.register();
 
-        LOGGER.info(RNRStructures.RUIN.toString());
-
         RNRPlacedFeatures.createBiomeModifications();
         RNRLootTableEvents.modifyVanillaLootTables();
         registerItemGroupEvents();
