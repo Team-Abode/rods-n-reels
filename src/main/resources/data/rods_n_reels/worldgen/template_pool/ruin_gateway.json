@@ -8,7 +8,7 @@
         "projection": "rigid",
         "location": "rods_n_reels:ruin_gateway",
         "override_liquid_settings": "apply_waterlogging",
-        "processors": []
+        "processors": "rods_n_reels:trench_ruin"
       }
     }
   ]

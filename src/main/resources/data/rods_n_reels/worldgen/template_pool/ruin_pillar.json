@@ -8,7 +8,7 @@
         "projection": "rigid",
         "location": "rods_n_reels:ruin_pillar",
         "override_liquid_settings": "apply_waterlogging",
-        "processors": []
+        "processors": "rods_n_reels:trench_ruin"
       }
     },
     {
@@ -18,7 +18,7 @@
         "projection": "rigid",
         "location": "rods_n_reels:ruin_pillar_half",
         "override_liquid_settings": "apply_waterlogging",
-        "processors": []
+        "processors": "rods_n_reels:trench_ruin"
       }
     },
     {
@@ -28,7 +28,7 @@
         "projection": "rigid",
         "location": "rods_n_reels:ruin_pillar_quarter",
         "override_liquid_settings": "apply_waterlogging",
-        "processors": []
+        "processors": "rods_n_reels:trench_ruin"
       }
     },
     {
@@ -38,7 +38,7 @@
         "projection": "rigid",
         "location": "rods_n_reels:ruin_pillar_bar",
         "override_liquid_settings": "apply_waterlogging",
-        "processors": []
+        "processors": "rods_n_reels:trench_ruin"
       }
     },
     {
@@ -48,7 +48,7 @@
         "projection": "rigid",
         "location": "rods_n_reels:ruin_pillar_bar_double",
         "override_liquid_settings": "apply_waterlogging",
-        "processors": []
+        "processors": "rods_n_reels:trench_ruin"
       }
     }
   ]

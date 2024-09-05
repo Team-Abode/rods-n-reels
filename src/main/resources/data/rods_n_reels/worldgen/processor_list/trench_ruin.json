@@ -1,0 +1,14 @@
+{
+  "processors": [
+    {
+      "processor_type": "minecraft:block_rot",
+      "integrity": 0.95,
+      "rottable_blocks": [
+        "minecraft:chiseled_tuff",
+        "minecraft:chiseled_tuff_bricks",
+        "minecraft:tuff_bricks",
+        "minecraft:tuff_brick_stairs"
+      ]
+    }
+  ]
+}
