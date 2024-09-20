@@ -6,7 +6,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "rods_n_reels:ruin_gateway",
+        "location": "rods_n_reels:trench_ruins/gateway",
         "override_liquid_settings": "apply_waterlogging",
         "processors": "rods_n_reels:trench_ruin"
       }

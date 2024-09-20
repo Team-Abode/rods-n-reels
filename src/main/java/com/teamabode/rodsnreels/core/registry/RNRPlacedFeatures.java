@@ -1,7 +1,7 @@
 package com.teamabode.rodsnreels.core.registry;
 
 import com.teamabode.rodsnreels.RodsNReels;
-import com.teamabode.rodsnreels.core.registry.tag.RNRBiomeTags;
+import com.teamabode.rodsnreels.core.tag.RNRBiomeTags;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.core.registries.Registries;

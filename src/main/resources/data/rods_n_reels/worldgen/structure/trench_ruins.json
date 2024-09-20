@@ -1,0 +1,6 @@
+{
+  "type": "rods_n_reels:trench_ruins",
+  "biomes": "#rods_n_reels:has_structure/trench_ruins",
+  "spawn_overrides": {},
+  "step": "surface_structures"
+}

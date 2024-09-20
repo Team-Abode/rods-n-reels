@@ -3,6 +3,7 @@ package com.teamabode.rodsnreels.common.structure;
 import com.mojang.serialization.MapCodec;
 import com.teamabode.rodsnreels.RodsNReels;
 import com.teamabode.rodsnreels.core.registry.RNRStructures;
+import com.teamabode.rodsnreels.core.registry.RNRTemplatePools;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
@@ -23,10 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Ruin extends Structure {
-    public static final MapCodec<Ruin> CODEC = Ruin.simpleCodec(Ruin::new);
+public class TrenchRuinsStructure extends Structure {
+    public static final MapCodec<TrenchRuinsStructure> CODEC = simpleCodec(TrenchRuinsStructure::new);
 
-    public Ruin(StructureSettings structureSettings) {
+    public TrenchRuinsStructure(StructureSettings structureSettings) {
         super(structureSettings);
     }
 
@@ -39,7 +40,7 @@ public class Ruin extends Structure {
 
     @Override
     public StructureType<?> type() {
-        return RNRStructures.RUIN;
+        return RNRStructures.TRENCH_RUINS;
     }
 
     private static int getPlacementHeight(BlockPos basePos, StructurePoolElement poolElement, Rotation rotation, Structure.GenerationContext generationContext) {
@@ -63,14 +64,14 @@ public class Ruin extends Structure {
 
     private static void generatePieces(StructurePiecesBuilder structurePiecesBuilder, Structure.GenerationContext generationContext) {
         HolderGetter<StructureTemplatePool> pools = generationContext.registryAccess().lookupOrThrow(Registries.TEMPLATE_POOL);
-        Holder<StructureTemplatePool> ruin_gateway_template_pool = pools.getOrThrow(ResourceKey.create(Registries.TEMPLATE_POOL, RodsNReels.id("ruin_gateway")));
-        Holder<StructureTemplatePool> ruin_pillar_template_pool = pools.getOrThrow(ResourceKey.create(Registries.TEMPLATE_POOL, RodsNReels.id("ruin_pillar")));
+        Holder<StructureTemplatePool> gatewayPool = pools.getOrThrow(RNRTemplatePools.TRENCH_RUINS_GATEWAYS);
+        Holder<StructureTemplatePool> pillarPool = pools.getOrThrow(RNRTemplatePools.TRENCH_RUINS_PILLARS);
 
         int pieceCount = generationContext.random().nextInt(3, 6);
 
         ArrayList<BoundingBox> boundingBoxes = new ArrayList<>();
 
-        StructurePoolElement gateWayPoolElement = ruin_gateway_template_pool.value().getRandomTemplate(generationContext.random());
+        StructurePoolElement gateWayPoolElement = gatewayPool.value().getRandomTemplate(generationContext.random());
 
         BlockPos gatewayStartBlockPos = generationContext.chunkPos().getBlockAt(0, 0, 0);
         Rotation gatewayRotation = Rotation.getRandom(generationContext.random());
@@ -95,7 +96,7 @@ public class Ruin extends Structure {
         ));
 
         for(int i = 0; i < pieceCount; i++) {
-            StructurePoolElement poolElement = ruin_pillar_template_pool.value().getRandomTemplate(generationContext.random());
+            StructurePoolElement poolElement = pillarPool.value().getRandomTemplate(generationContext.random());
 
             BlockPos placeBlockPos = null;
             Rotation rotation = Rotation.getRandom(generationContext.random());

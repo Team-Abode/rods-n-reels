@@ -1,6 +1,0 @@
-{
-  "type": "rods_n_reels:ruin",
-  "biomes": "#rods_n_reels:has_ruins",
-  "spawn_overrides": {},
-  "step": "surface_structures"
-}

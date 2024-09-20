@@ -6,7 +6,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "rods_n_reels:ruin_pillar",
+        "location": "rods_n_reels:trench_ruins/pillar",
         "override_liquid_settings": "apply_waterlogging",
         "processors": "rods_n_reels:trench_ruin"
       }
@@ -16,7 +16,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "rods_n_reels:ruin_pillar_half",
+        "location": "rods_n_reels:trench_ruins/pillar_half",
         "override_liquid_settings": "apply_waterlogging",
         "processors": "rods_n_reels:trench_ruin"
       }
@@ -26,7 +26,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "rods_n_reels:ruin_pillar_quarter",
+        "location": "rods_n_reels:trench_ruins/pillar_quarter",
         "override_liquid_settings": "apply_waterlogging",
         "processors": "rods_n_reels:trench_ruin"
       }
@@ -36,7 +36,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "rods_n_reels:ruin_pillar_bar",
+        "location": "rods_n_reels:trench_ruins/pillar_bar",
         "override_liquid_settings": "apply_waterlogging",
         "processors": "rods_n_reels:trench_ruin"
       }
@@ -46,7 +46,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "rods_n_reels:ruin_pillar_bar_double",
+        "location": "rods_n_reels:trench_ruins/pillar_bar_double",
         "override_liquid_settings": "apply_waterlogging",
         "processors": "rods_n_reels:trench_ruin"
       }
