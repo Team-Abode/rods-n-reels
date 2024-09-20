@@ -26,7 +26,7 @@ public class RNRBlocks {
                     .pushReaction(PushReaction.DESTROY)
                     .lightLevel(state -> 15)
     ));
-    public static final Block BUBBLEDEW_STEM_PLANT = register(
+    public static final Block BUBBLEDEW_STEM_PLANT = registerWithoutItem(
             "bubbledew_stem_plant",
             new BubbledewStemPlantBlock(Properties.of()
                     .noCollission()
@@ -35,7 +35,7 @@ public class RNRBlocks {
                     .sound(SoundType.WET_GRASS)
                     .pushReaction(PushReaction.DESTROY)
     ));
-    public static final Block BUBBLEDEW_STEM = register(
+    public static final Block BUBBLEDEW_STEM = registerWithoutItem(
             "bubbledew_stem",
             new BubbledewStemBlock(Properties.ofFullCopy(BUBBLEDEW_STEM_PLANT))
     );
@@ -48,5 +48,9 @@ public class RNRBlocks {
         var registry = Registry.register(BuiltInRegistries.BLOCK, RodsNReels.id(name), block);
         Registry.register(BuiltInRegistries.ITEM, RodsNReels.id(name), new BlockItem(registry, new Item.Properties()));
         return registry;
+    }
+
+    private static Block registerWithoutItem(String name, Block block) {
+        return Registry.register(BuiltInRegistries.BLOCK, RodsNReels.id(name), block);
     }
 }
