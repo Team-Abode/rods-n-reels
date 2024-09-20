@@ -18,7 +18,6 @@ public class RodsNReels implements ModInitializer {
         RNRItems.register();
         RNRBlocks.register();
         RNRFeatures.register();
-        RNREnchantmentEntityEffects.register();
         RNRDecoratedPotPatterns.register();
         RNRStructures.register();
 
