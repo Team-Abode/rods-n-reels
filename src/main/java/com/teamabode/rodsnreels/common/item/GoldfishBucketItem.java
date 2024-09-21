@@ -38,10 +38,7 @@ public class GoldfishBucketItem extends MobBucketItem {
             bucketable.loadFromBucketTag(customData.copyTag());
             bucketable.setFromBucket(true);
 
-            if (entity.getOwnerUUID() == null) {
-                entity.setOwnerUUID(user.getUUID());
-                server.broadcastEntityEvent(entity, (byte) 7);
-            }
+            server.broadcastEntityEvent(entity, (byte) 7);
         }
     }
 }
