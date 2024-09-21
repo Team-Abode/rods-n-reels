@@ -11,11 +11,11 @@ public class RodsNReelsDataGenerator implements DataGeneratorEntrypoint {
         FabricDataGenerator.Pack pack = generator.createPack();
 
         // Server Data
-        pack.addProvider(RNRItemTagsProvider::new);
+        pack.addProvider(RNRItemTagProvider::new);
         pack.addProvider(RNRBlockLootTableProvider::new);
         pack.addProvider(RNREntityLootTableProvider::new);
-        pack.addProvider(RNRRecipesProvider::new);
-        pack.addProvider(RNRBlockTagsProvider::new);
+        pack.addProvider(RNRRecipeProvider::new);
+        pack.addProvider(RNRBlockTagProvider::new);
 
         // Client Data
         pack.addProvider(RNRModelProvider::new);

@@ -3,23 +3,23 @@ package com.teamabode.rodsnreels.core.misc;
 import com.teamabode.rodsnreels.core.registry.RNRItems;
 import com.teamabode.rodsnreels.core.registry.RNRLootTables;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
+import net.minecraft.entity.EntityType;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LootTableEntry;
 
 public class RNRLootTableEvents {
     public static void modifyVanillaLootTables() {
         LootTableEvents.MODIFY.register((key, tableBuilder, source) -> {
-            if (key.equals(BuiltInLootTables.FISHING_FISH)) {
-                tableBuilder.modifyPools(builder -> builder.add(LootItem.lootTableItem(RNRItems.SQUID).setWeight(15)));
+            if (key.equals(LootTables.FISHING_FISH_GAMEPLAY)) {
+                tableBuilder.modifyPools(builder -> builder.with(ItemEntry.builder(RNRItems.SQUID).weight(15)));
             }
-            if (key.equals(BuiltInLootTables.FISHING_JUNK)) {
-                tableBuilder.modifyPools(builder -> builder.add(NestedLootTable.lootTableReference(RNRLootTables.FISHING_JUNK).setWeight(30)));
+            if (key.equals(LootTables.FISHING_JUNK_GAMEPLAY)) {
+                tableBuilder.modifyPools(builder -> builder.with(LootTableEntry.builder(RNRLootTables.FISHING_JUNK).weight(30)));
             }
-            if (key.equals(EntityType.SQUID.getDefaultLootTable()) || key.equals(EntityType.GLOW_SQUID.getDefaultLootTable())) {
-                tableBuilder.withPool(LootPool.lootPool().add(NestedLootTable.lootTableReference(RNRLootTables.SQUID_MEAT)));
+            if (key.equals(EntityType.SQUID.getLootTableId()) || key.equals(EntityType.GLOW_SQUID.getLootTableId())) {
+                tableBuilder.pool(LootPool.builder().with(LootTableEntry.builder(RNRLootTables.ENTITIES_SQUID_MEAT)));
             }
         });
     }

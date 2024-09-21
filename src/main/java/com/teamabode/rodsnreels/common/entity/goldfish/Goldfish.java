@@ -1,17 +1,17 @@
 package com.teamabode.rodsnreels.common.entity.goldfish;
 
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.animal.Bucketable;
-import net.minecraft.world.entity.animal.WaterAnimal;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.Bucketable;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.mob.WaterCreatureEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.world.World;
 
-public class Goldfish extends WaterAnimal implements Bucketable {
+public class Goldfish extends WaterCreatureEntity implements Bucketable {
 
-    public Goldfish(EntityType<? extends Goldfish> entityType, Level level) {
+    public Goldfish(EntityType<? extends Goldfish> entityType, World level) {
         super(entityType, level);
     }
 
@@ -20,26 +20,26 @@ public class Goldfish extends WaterAnimal implements Bucketable {
             double deltaX = this.random.nextGaussian() * 0.02;
             double deltaY = this.random.nextGaussian() * 0.02;
             double deltaZ = this.random.nextGaussian() * 0.02;
-            this.level().addParticle(ParticleTypes.HEART, this.getRandomX(1.0), this.getRandomY() + 0.5, this.getRandomZ(1.0), deltaX, deltaY, deltaZ);
+            this.getWorld().addParticle(ParticleTypes.HEART, this.getParticleX(1.0), this.getRandomBodyY() + 0.5, this.getParticleZ(1.0), deltaX, deltaY, deltaZ);
         }
     }
 
     public boolean unableToFollowOwner() {
-        return this.isPassenger() || this.isPanicking() /*|| this.getOwner() != null && this.getOwner().isSpectator()*/;
+        return this.hasVehicle() || this.isPanicking() /*|| this.getOwner() != null && this.getOwner().isSpectator()*/;
     }
 
     @Override
-    public void handleEntityEvent(byte flag) {
+    public void handleStatus(byte flag) {
         if (flag == 7) {
             this.spawnHeartParticles();
         }
         else {
-            super.handleEntityEvent(flag);
+            super.handleStatus(flag);
         }
     }
 
     @Override
-    public boolean fromBucket() {
+    public boolean isFromBucket() {
         return false;
     }
 
@@ -49,22 +49,22 @@ public class Goldfish extends WaterAnimal implements Bucketable {
     }
 
     @Override
-    public void saveToBucketTag(ItemStack stack) {
+    public void copyDataToStack(ItemStack stack) {
 
     }
 
     @Override
-    public void loadFromBucketTag(CompoundTag tag) {
+    public void copyDataFromNbt(NbtCompound tag) {
 
     }
 
     @Override
-    public ItemStack getBucketItemStack() {
+    public ItemStack getBucketItem() {
         return null;
     }
 
     @Override
-    public SoundEvent getPickupSound() {
+    public SoundEvent getBucketFillSound() {
         return null;
     }
 }

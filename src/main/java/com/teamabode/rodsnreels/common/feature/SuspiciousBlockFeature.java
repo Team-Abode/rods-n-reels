@@ -1,27 +1,27 @@
 package com.teamabode.rodsnreels.common.feature;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.entity.BrushableBlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BrushableBlockEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
-public class SuspiciousBlockFeature extends Feature<SuspiciousBlockConfiguration> {
+public class SuspiciousBlockFeature extends Feature<SuspiciousBlockConfig> {
     public SuspiciousBlockFeature() {
-        super(SuspiciousBlockConfiguration.CODEC);
+        super(SuspiciousBlockConfig.CODEC);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<SuspiciousBlockConfiguration> context) {
-        WorldGenLevel level = context.level();
-        SuspiciousBlockConfiguration config = context.config();
-        RandomSource random = context.random();
-        BlockPos pos = context.origin();
-        BlockState state = config.toPlace().getState(random, pos);
+    public boolean generate(FeatureContext<SuspiciousBlockConfig> context) {
+        StructureWorldAccess level = context.getWorld();
+        SuspiciousBlockConfig config = context.getConfig();
+        Random random = context.getRandom();
+        BlockPos pos = context.getOrigin();
+        BlockState state = config.toPlace().get(random, pos);
 
-        if (state.canSurvive(level, pos) && level.setBlock(pos, state, 2)) {
+        if (state.canPlaceAt(level, pos) && level.setBlockState(pos, state, 2)) {
             if (level.getBlockEntity(pos) instanceof BrushableBlockEntity blockEntity) {
                 blockEntity.setLootTable(config.lootTable(), pos.asLong());
             }

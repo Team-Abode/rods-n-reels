@@ -4,9 +4,9 @@ import com.teamabode.rodsnreels.core.misc.RNRLootTableEvents;
 import com.teamabode.rodsnreels.core.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Items;
+import net.minecraft.item.ItemGroups;
+import net.minecraft.item.Items;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +20,7 @@ public class RodsNReels implements ModInitializer {
         RNREntityTypes.register();
         RNRFeatures.register();
         RNRDecoratedPotPatterns.register();
-        RNRStructures.register();
+        RNRStructureTypes.register();
         RNRSoundEvents.register();
 
         RNRPlacedFeatures.createBiomeModifications();
@@ -28,15 +28,15 @@ public class RodsNReels implements ModInitializer {
         registerItemGroupEvents();
     }
 
-    public static ResourceLocation id(String name) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
+    public static Identifier id(String name) {
+        return Identifier.of(MOD_ID, name);
     }
 
     public static void registerItemGroupEvents() {
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS).register(entries -> {
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
             entries.addBefore(Items.COD, RNRItems.SQUID, RNRItems.COOKED_SQUID);
         });
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register(entries -> {
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.addBefore(Items.GUSTER_POTTERY_SHERD, RNRItems.GILLS_POTTERY_SHERD);
         });
     }

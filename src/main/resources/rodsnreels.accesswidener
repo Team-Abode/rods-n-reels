@@ -1,3 +1,2 @@
 accessWidener v2 named
-accessible method net/minecraft/data/worldgen/SurfaceRuleData makeStateRule (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/levelgen/SurfaceRules$RuleSource;
-accessible method net/minecraft/world/level/block/GrowingPlantBlock canAttachTo (Lnet/minecraft/world/level/block/state/BlockState;)Z
+accessible method net/minecraft/block/AbstractPlantPartBlock canAttachTo (Lnet/minecraft/block/BlockState;)Z

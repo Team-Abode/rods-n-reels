@@ -3,9 +3,9 @@ package com.teamabode.rodsnreels.datagen.client;
 import com.teamabode.rodsnreels.core.registry.RNRItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
-import net.minecraft.data.models.BlockModelGenerators;
-import net.minecraft.data.models.ItemModelGenerators;
-import net.minecraft.data.models.model.ModelTemplates;
+import net.minecraft.data.client.BlockStateModelGenerator;
+import net.minecraft.data.client.ItemModelGenerator;
+import net.minecraft.data.client.Models;
 
 public class RNRModelProvider extends FabricModelProvider {
     public RNRModelProvider(FabricDataOutput output) {
@@ -13,18 +13,18 @@ public class RNRModelProvider extends FabricModelProvider {
     }
 
     @Override
-    public void generateBlockStateModels(BlockModelGenerators generator) {
+    public void generateBlockStateModels(BlockStateModelGenerator generator) {
 
     }
 
     @Override
-    public void generateItemModels(ItemModelGenerators generator) {
-        generator.generateFlatItem(RNRItems.GILLS_POTTERY_SHERD, ModelTemplates.FLAT_ITEM);
+    public void generateItemModels(ItemModelGenerator generator) {
+        generator.register(RNRItems.GILLS_POTTERY_SHERD, Models.GENERATED);
 
-        generator.generateFlatItem(RNRItems.SQUID, ModelTemplates.FLAT_ITEM);
-        generator.generateFlatItem(RNRItems.COOKED_SQUID, ModelTemplates.FLAT_ITEM);
+        generator.register(RNRItems.SQUID, Models.GENERATED);
+        generator.register(RNRItems.COOKED_SQUID, Models.GENERATED);
 
-        generator.generateFlatItem(RNRItems.GOLDFISH, ModelTemplates.FLAT_ITEM);
-        generator.generateFlatItem(RNRItems.GOLDFISH_BUCKET, ModelTemplates.FLAT_ITEM);
+        generator.register(RNRItems.GOLDFISH, Models.GENERATED);
+        generator.register(RNRItems.GOLDFISH_BUCKET, Models.GENERATED);
     }
 }

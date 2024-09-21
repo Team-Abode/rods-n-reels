@@ -1,9 +1,9 @@
 package com.teamabode.rodsnreels.core.registry;
 
 import com.teamabode.rodsnreels.RodsNReels;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.sounds.SoundEvent;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.sound.SoundEvent;
 
 public class RNRSoundEvents {
     public static final SoundEvent ENTITY_GOLDFISH_AMBIENT = register("entity.goldfish.ambient");
@@ -16,6 +16,6 @@ public class RNRSoundEvents {
     }
 
     private static SoundEvent register(String name) {
-        return Registry.register(BuiltInRegistries.SOUND_EVENT, RodsNReels.id(name), SoundEvent.createVariableRangeEvent(RodsNReels.id(name)));
+        return Registry.register(Registries.SOUND_EVENT, RodsNReels.id(name), SoundEvent.of(RodsNReels.id(name)));
     }
 }

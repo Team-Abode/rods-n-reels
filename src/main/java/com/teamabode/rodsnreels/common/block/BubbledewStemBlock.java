@@ -2,110 +2,114 @@ package com.teamabode.rodsnreels.common.block;
 
 import com.mojang.serialization.MapCodec;
 import com.teamabode.rodsnreels.core.registry.RNRBlocks;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.block.AbstractPlantStemBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.FluidFillable;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.Properties;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.ATTACHED;
+public class BubbledewStemBlock extends AbstractPlantStemBlock implements FluidFillable {
+    public static final MapCodec<BubbledewStemBlock> CODEC = BubbledewStemBlock.createCodec(BubbledewStemBlock::new);
+    public static final BooleanProperty ATTACHED = Properties.ATTACHED;
 
-public class BubbledewStemBlock extends GrowingPlantHeadBlock implements LiquidBlockContainer {
-    public static final MapCodec<BubbledewStemBlock> CODEC = BubbledewStemBlock.simpleCodec(BubbledewStemBlock::new);
+    protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 9.0, 16.0);
 
-    protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 9.0, 16.0);
-
-    public BubbledewStemBlock(Properties properties) {
+    public BubbledewStemBlock(Settings properties) {
         super(properties, Direction.UP, SHAPE, true, 0.14);
 
-        this.registerDefaultState(this.stateDefinition.any().setValue(ATTACHED, false).setValue(AGE, 0));
+        this.setDefaultState(this.stateManager.getDefaultState().with(ATTACHED, false).with(AGE, 0));
     }
 
     @Override
-    protected VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        return blockState.getValue(ATTACHED) ? Shapes.block() : SHAPE;
+    protected VoxelShape getOutlineShape(BlockState blockState, BlockView blockGetter, BlockPos blockPos, ShapeContext collisionContext) {
+        return blockState.get(ATTACHED) ? VoxelShapes.fullCube() : SHAPE;
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(ATTACHED);
         builder.add(AGE);
     }
 
     @Override
-    protected void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
+    protected void randomTick(BlockState blockState, ServerWorld serverLevel, BlockPos blockPos, Random randomSource) {
         if (randomSource.nextInt(1) != 0) return;
 
-        BlockState aboveBlockstate = serverLevel.getBlockState(blockPos.above());
+        BlockState aboveBlockstate = serverLevel.getBlockState(blockPos.up());
 
-        if(!aboveBlockstate.is(Blocks.WATER)) return;
+        if(!aboveBlockstate.isOf(Blocks.WATER)) return;
 
-        serverLevel.setBlockAndUpdate(blockPos.above(), RNRBlocks.BUBBLEDEW.defaultBlockState());
-        serverLevel.setBlockAndUpdate(blockPos, blockState.setValue(ATTACHED, true));
+        serverLevel.setBlockState(blockPos.up(), RNRBlocks.BUBBLEDEW.getDefaultState());
+        serverLevel.setBlockState(blockPos, blockState.with(ATTACHED, true));
     }
 
     @Override
-    protected BlockState updateShape(BlockState blockState, Direction direction, BlockState otherState, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
-        BlockState state = super.updateShape(blockState, direction, otherState, levelAccessor, blockPos, blockPos2);
+    protected BlockState getStateForNeighborUpdate(BlockState blockState, Direction direction, BlockState otherState, WorldAccess levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
+        BlockState state = super.getStateForNeighborUpdate(blockState, direction, otherState, levelAccessor, blockPos, blockPos2);
 
-        if(!state.is(blockState.getBlock())) return state;
+        if(!state.isOf(blockState.getBlock())) return state;
 
         if(direction != Direction.UP) return state;
 
-        if (otherState.is(RNRBlocks.BUBBLEDEW)) return state;
+        if (otherState.isOf(RNRBlocks.BUBBLEDEW)) return state;
 
-        return blockState.setValue(ATTACHED, false);
+        return blockState.with(ATTACHED, false);
     }
 
     @Override
-    protected boolean canGrowInto(BlockState blockState) {
-        return blockState.is(Blocks.WATER);
+    protected boolean chooseStemState(BlockState blockState) {
+        return blockState.isOf(Blocks.WATER);
     }
 
     @Override
-    protected Block getBodyBlock() {
+    protected Block getPlant() {
         return RNRBlocks.BUBBLEDEW_STEM_PLANT;
     }
 
     @Override
     public boolean canAttachTo(BlockState blockState) {
-        return !blockState.is(Blocks.MAGMA_BLOCK);
+        return !blockState.isOf(Blocks.MAGMA_BLOCK);
     }
 
     @Override
-    protected int getBlocksToGrowWhenBonemealed(RandomSource randomSource) {
+    protected int getGrowthLength(Random randomSource) {
         return 1;
     }
 
     @Override
     protected FluidState getFluidState(BlockState blockState) {
-        return Fluids.WATER.getSource(false);
+        return Fluids.WATER.getStill(false);
     }
 
     @Override
-    public boolean canPlaceLiquid(@Nullable Player player, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, Fluid fluid) {
+    public boolean canFillWithFluid(@Nullable PlayerEntity player, BlockView blockGetter, BlockPos blockPos, BlockState blockState, Fluid fluid) {
         return false;
     }
 
     @Override
-    public boolean placeLiquid(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
+    public boolean tryFillWithFluid(WorldAccess levelAccessor, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
         return false;
     }
 
     @Override
-    public MapCodec<BubbledewStemBlock> codec() {
+    public MapCodec<BubbledewStemBlock> getCodec() {
         return CODEC;
     }
 }

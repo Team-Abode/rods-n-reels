@@ -5,12 +5,12 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "DecoratedPotPatternsMixin",
-    "NoiseGeneratorSettingsMixin",
-    "OverworldBiomeBuilderMixin"
+    "ChunkGeneratorSettingsMixins",
+    "VanillaBiomeParametersMixin"
   ],
   "client": [
-    "client.FogRendererMixin",
-    "client.LevelRendererMixin"
+    "client.BackgroundRendererMixin",
+    "client.WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
