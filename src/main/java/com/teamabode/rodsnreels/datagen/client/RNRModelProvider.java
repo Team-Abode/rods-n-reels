@@ -23,5 +23,8 @@ public class RNRModelProvider extends FabricModelProvider {
 
         generator.generateFlatItem(RNRItems.SQUID, ModelTemplates.FLAT_ITEM);
         generator.generateFlatItem(RNRItems.COOKED_SQUID, ModelTemplates.FLAT_ITEM);
+
+        generator.generateFlatItem(RNRItems.GOLDFISH, ModelTemplates.FLAT_ITEM);
+        generator.generateFlatItem(RNRItems.GOLDFISH_BUCKET, ModelTemplates.FLAT_ITEM);
     }
 }

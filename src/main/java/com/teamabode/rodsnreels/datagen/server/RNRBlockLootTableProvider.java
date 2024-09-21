@@ -9,7 +9,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.EnchantmentTags;
-import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.biome.Biome;
@@ -30,8 +29,8 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-public class RNRLootTablesProvider extends FabricBlockLootTableProvider {
-    public RNRLootTablesProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+public class RNRBlockLootTableProvider extends FabricBlockLootTableProvider {
+    public RNRBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(dataOutput, registryLookup);
     }
 

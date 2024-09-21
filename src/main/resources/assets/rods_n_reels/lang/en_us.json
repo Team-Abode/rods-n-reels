@@ -1,11 +1,20 @@
 {
   "item.rods_n_reels.cooked_squid": "Calamari",
   "item.rods_n_reels.gills_pottery_sherd": "Gills Pottery Sherd",
+  "item.rods_n_reels.goldfish": "Goldfish",
+  "item.rods_n_reels.goldfish_bucket": "Bucket of Goldfish",
+  "item.rods_n_reels.goldfish_spawn_egg": "Goldfish Spawn Egg",
   "item.rods_n_reels.squid": "Raw Squid",
 
   "block.rods_n_reels.bubbledew": "Bubbledew",
   "block.rods_n_reels.bubbledew_stem": "Bubbledew Stem",
   "block.rods_n_reels.bubbledew_stem_plant": "Bubbledew Stem Plant",
 
-  "enchantment.rods_n_reels.galvanize": "Galvanize"
+  "enchantment.rods_n_reels.galvanize": "Galvanize",
+
+  "entity.rods_n_reels.goldfish": "Goldfish",
+
+  "subtitles.rods_n_reels.entity.goldfish.death": "Goldfish dies",
+  "subtitles.rods_n_reels.entity.goldfish.flop": "Goldfish flops",
+  "subtitles.rods_n_reels.entity.goldfish.hurt": "Goldfish hurts"
 }

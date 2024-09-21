@@ -2,10 +2,8 @@ package com.teamabode.rodsnreels.core.mixin.client;
 
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.teamabode.rodsnreels.RodsNReels;
 import com.teamabode.rodsnreels.client.RodsNReelsClient;
 import com.teamabode.rodsnreels.core.registry.RNRBiomes;
-import com.teamabode.rodsnreels.datagen.RodsNReelsData;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.FogRenderer;

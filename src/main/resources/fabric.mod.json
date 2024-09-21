@@ -23,7 +23,7 @@
       "com.teamabode.rodsnreels.client.RodsNReelsClient"
     ],
     "fabric-datagen": [
-      "com.teamabode.rodsnreels.datagen.RodsNReelsData"
+        "com.teamabode.rodsnreels.datagen.RodsNReelsDataGenerator"
     ]
   },
   "mixins": [
