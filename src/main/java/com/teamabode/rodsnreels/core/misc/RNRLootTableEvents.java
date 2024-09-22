@@ -16,7 +16,7 @@ public class RNRLootTableEvents {
                 tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(RNRItems.SQUID).weight(15)));
             }
             if (key.equals(LootTables.FISHING_JUNK_GAMEPLAY)) {
-                tableBuilder.pool(LootPool.builder().with(LootTableEntry.builder(RNRLootTables.FISHING_JUNK).weight(30)));
+                tableBuilder.pool(LootPool.builder().with(LootTableEntry.builder(RNRLootTables.GAMEPLAY_FISHIHG_JUNK).weight(30)));
             }
             if (key.equals(EntityType.SQUID.getLootTableId()) || key.equals(EntityType.GLOW_SQUID.getLootTableId())) {
                 tableBuilder.pool(LootPool.builder().with(LootTableEntry.builder(RNRLootTables.ENTITIES_SQUID_MEAT)));
