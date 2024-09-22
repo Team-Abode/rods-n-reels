@@ -10,6 +10,7 @@ import net.minecraft.entity.ai.brain.task.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -54,29 +55,8 @@ public class GoldfishBrain {
     public static void addIdleActivities(Brain<GoldfishEntity> brain) {
         brain.setTaskList(Activity.IDLE, ImmutableList.of(
                 Pair.of(1, StrollTask.createDynamicRadius(1.0f)),
-                Pair.of(2, WalkTowardsLookTargetTask.create(GoldfishBrain::getLikedPlayer, GoldfishBrain::canFollowLikedPlayer, 4, 12, 2.5f))
+                Pair.of(2, WalkTowardsLookTargetTask.create(GoldfishUtils::getLookTarget, GoldfishUtils::canFollowLikedPlayer, 4, 12, 2.5f))
         ));
-    }
-
-    public static Optional<LookTarget> getLikedPlayer(LivingEntity goldfish) {
-        Brain<?> brain = goldfish.getBrain();
-        World world = goldfish.getWorld();
-        Optional<UUID> likedPlayer = brain.getOptionalRegisteredMemory(MemoryModuleType.LIKED_PLAYER);
-        if (likedPlayer.isEmpty()) return Optional.empty();
-
-        PlayerEntity player = world.getPlayerByUuid(likedPlayer.get());
-        if (player != null && player.isInsideWaterOrBubbleColumn()) {
-            return Optional.of(new EntityLookTarget(player, true));
-        }
-        return Optional.empty();
-    }
-
-    public static boolean canFollowLikedPlayer(LivingEntity goldfish) {
-        return !goldfish.hasVehicle();
-    }
-
-    public static void setLikedPlayer(GoldfishEntity goldfish, PlayerEntity player) {
-        goldfish.getBrain().remember(MemoryModuleType.LIKED_PLAYER, player.getUuid());
     }
 
     public static void updateActivities(GoldfishEntity goldfish) {

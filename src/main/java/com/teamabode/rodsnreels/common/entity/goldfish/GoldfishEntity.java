@@ -3,17 +3,25 @@ package com.teamabode.rodsnreels.common.entity.goldfish;
 import com.mojang.serialization.Dynamic;
 import com.teamabode.rodsnreels.core.registry.RNRItems;
 import com.teamabode.rodsnreels.core.registry.RNRSoundEvents;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.NbtComponent;
+import net.minecraft.entity.Bucketable;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.brain.Brain;
+import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.FishEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
+import java.util.UUID;
 
 public class GoldfishEntity extends FishEntity {
 
@@ -72,13 +80,25 @@ public class GoldfishEntity extends FishEntity {
     }
 
     @Override
-    public ItemStack getBucketItem() {
-        return new ItemStack(RNRItems.GOLDFISH_BUCKET);
+    public void copyDataToStack(ItemStack stack) {
+        Bucketable.copyDataToStack(this, stack);
+        NbtComponent.set(DataComponentTypes.BUCKET_ENTITY_DATA, stack, nbt -> {
+            Optional<UUID> likedPlayer = GoldfishUtils.getLikedPlayer(this);
+            likedPlayer.ifPresent(value -> nbt.putUuid("liked_player", value));
+        });
     }
 
     @Override
-    public SoundEvent getBucketFillSound() {
-        return SoundEvents.ITEM_BUCKET_FILL_FISH;
+    public void copyDataFromNbt(NbtCompound nbt) {
+        Bucketable.copyDataFromNbt(this, nbt);
+        if (nbt.containsUuid("liked_player")) {
+            GoldfishUtils.setLikedPlayer(this, nbt.getUuid("liked_player"));
+        }
+    }
+
+    @Override
+    public ItemStack getBucketItem() {
+        return new ItemStack(RNRItems.GOLDFISH_BUCKET);
     }
 
     @Override

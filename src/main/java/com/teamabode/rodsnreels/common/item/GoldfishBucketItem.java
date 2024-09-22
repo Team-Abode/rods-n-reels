@@ -1,7 +1,7 @@
 package com.teamabode.rodsnreels.common.item;
 
-import com.teamabode.rodsnreels.common.entity.goldfish.GoldfishBrain;
 import com.teamabode.rodsnreels.common.entity.goldfish.GoldfishEntity;
+import com.teamabode.rodsnreels.common.entity.goldfish.GoldfishUtils;
 import com.teamabode.rodsnreels.core.registry.RNREntityTypes;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
@@ -39,8 +39,10 @@ public class GoldfishBucketItem extends EntityBucketItem {
             bucketable.copyDataFromNbt(customData.copyNbt());
             bucketable.setFromBucket(true);
 
-            GoldfishBrain.setLikedPlayer(entity, user);
-            server.sendEntityStatus(entity, (byte) 7);
+            if (!GoldfishUtils.hasLikedPlayer(entity)) {
+                GoldfishUtils.setLikedPlayer(entity, user.getUuid());
+                server.sendEntityStatus(entity, (byte) 7);
+            }
         }
     }
 }
