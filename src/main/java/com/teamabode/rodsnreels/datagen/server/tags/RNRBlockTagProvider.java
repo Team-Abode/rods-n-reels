@@ -1,4 +1,4 @@
-package com.teamabode.rodsnreels.datagen.server;
+package com.teamabode.rodsnreels.datagen.server.tags;
 
 import com.teamabode.rodsnreels.core.tag.RNRBlockTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;

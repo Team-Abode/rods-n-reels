@@ -38,9 +38,16 @@ public class RodsNReels implements ModInitializer {
     public static void registerItemGroupEvents() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
             entries.addBefore(Items.COD, RNRItems.SQUID, RNRItems.COOKED_SQUID);
+            entries.addAfter(Items.PUFFERFISH, RNRItems.GOLDFISH);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.addBefore(Items.GUSTER_POTTERY_SHERD, RNRItems.GILLS_POTTERY_SHERD);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
+            entries.addAfter(Items.PUFFERFISH_BUCKET, RNRItems.GOLDFISH_BUCKET);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> {
+            entries.addAfter(Items.GOAT_SPAWN_EGG, RNRItems.GOLDFISH_SPAWN_EGG);
         });
     }
 

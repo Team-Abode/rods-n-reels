@@ -18,8 +18,9 @@ public class RNRItems {
     public static final Item COOKED_SQUID = register("cooked_squid", new Settings().food(RNRFoodComponents.CALAMARI));
 
     public static final Item GOLDFISH = register("goldfish", new Settings().food(RNRFoodComponents.CALAMARI));
-    public static final Item GOLDFISH_BUCKET = register("goldfish_bucket", new GoldfishBucketItem(
-            new Settings().component(DataComponentTypes.BUCKET_ENTITY_DATA, NbtComponent.DEFAULT)
+    public static final Item GOLDFISH_BUCKET = register("goldfish_bucket", new GoldfishBucketItem(new Settings()
+            .maxCount(1)
+            .component(DataComponentTypes.BUCKET_ENTITY_DATA, NbtComponent.DEFAULT)
     ));
     public static final Item GOLDFISH_SPAWN_EGG = register("goldfish_spawn_egg", new SpawnEggItem(RNREntityTypes.GOLDFISH, 14902052, 15284239, new Settings()));
 
