@@ -1,7 +1,4 @@
 {
-    "entity.goldfish.ambient": {
-        "sounds": []
-    },
     "entity.goldfish.flop": {
         "sounds": [
             {

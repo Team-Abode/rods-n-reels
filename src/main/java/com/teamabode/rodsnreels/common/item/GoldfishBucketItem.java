@@ -1,6 +1,7 @@
 package com.teamabode.rodsnreels.common.item;
 
-import com.teamabode.rodsnreels.common.entity.goldfish.Goldfish;
+import com.teamabode.rodsnreels.common.entity.goldfish.GoldfishBrain;
+import com.teamabode.rodsnreels.common.entity.goldfish.GoldfishEntity;
 import com.teamabode.rodsnreels.core.registry.RNREntityTypes;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
@@ -31,13 +32,14 @@ public class GoldfishBucketItem extends EntityBucketItem {
     }
 
     private void spawn(ServerWorld server, PlayerEntity user, ItemStack stack, BlockPos pos) {
-        Goldfish entity = RNREntityTypes.GOLDFISH.spawnFromItemStack(server, stack, null, pos, SpawnReason.BUCKET, true, false);
+        GoldfishEntity entity = RNREntityTypes.GOLDFISH.spawnFromItemStack(server, stack, null, pos, SpawnReason.BUCKET, true, false);
 
         if (entity instanceof Bucketable bucketable) {
             NbtComponent customData = stack.getOrDefault(DataComponentTypes.BUCKET_ENTITY_DATA, NbtComponent.DEFAULT);
             bucketable.copyDataFromNbt(customData.copyNbt());
             bucketable.setFromBucket(true);
 
+            GoldfishBrain.setLikedPlayer(entity, user);
             server.sendEntityStatus(entity, (byte) 7);
         }
     }

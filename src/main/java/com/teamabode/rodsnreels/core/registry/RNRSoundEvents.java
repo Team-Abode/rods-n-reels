@@ -6,7 +6,6 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
 
 public class RNRSoundEvents {
-    public static final SoundEvent ENTITY_GOLDFISH_AMBIENT = register("entity.goldfish.ambient");
     public static final SoundEvent ENTITY_GOLDFISH_FLOP = register("entity.goldfish.flop");
     public static final SoundEvent ENTITY_GOLDFISH_HURT = register("entity.goldfish.hurt");
     public static final SoundEvent ENTITY_GOLDFISH_DEATH = register("entity.goldfish.death");

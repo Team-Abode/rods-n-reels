@@ -4,9 +4,11 @@ import com.teamabode.rodsnreels.core.misc.RNRLootTableEvents;
 import com.teamabode.rodsnreels.core.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
+import net.minecraft.village.TradeOffers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +28,7 @@ public class RodsNReels implements ModInitializer {
         RNRPlacedFeatures.createBiomeModifications();
         RNRLootTableEvents.modifyVanillaLootTables();
         registerItemGroupEvents();
+        registerTradeOffers();
     }
 
     public static Identifier id(String name) {
@@ -38,6 +41,12 @@ public class RodsNReels implements ModInitializer {
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.addBefore(Items.GUSTER_POTTERY_SHERD, RNRItems.GILLS_POTTERY_SHERD);
+        });
+    }
+
+    public static void registerTradeOffers() {
+        TradeOfferHelper.registerWanderingTraderOffers(2, offers -> {
+            offers.add(new TradeOffers.SellItemFactory(RNRItems.GOLDFISH_BUCKET, 5, 1, 4, 1));
         });
     }
 }

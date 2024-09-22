@@ -1,7 +1,7 @@
 package com.teamabode.rodsnreels.client.model;
 
 import com.teamabode.rodsnreels.RodsNReels;
-import com.teamabode.rodsnreels.common.entity.goldfish.Goldfish;
+import com.teamabode.rodsnreels.common.entity.goldfish.GoldfishEntity;
 import net.minecraft.client.model.Dilation;
 import net.minecraft.client.model.ModelData;
 import net.minecraft.client.model.ModelPart;
@@ -13,7 +13,7 @@ import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.util.math.MathHelper;
 
-public class GoldfishModel extends SinglePartEntityModel<Goldfish> {
+public class GoldfishModel extends SinglePartEntityModel<GoldfishEntity> {
 	public static final EntityModelLayer LAYER = new EntityModelLayer(RodsNReels.id("goldfish"), "main");
 
 	private final ModelPart body;
@@ -48,7 +48,7 @@ public class GoldfishModel extends SinglePartEntityModel<Goldfish> {
 	}
 
 	@Override
-	public void setAngles(Goldfish entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+	public void setAngles(GoldfishEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
 		float f = 1.0f;
 		if (!entity.isTouchingWater()) {
 			f = 1.5f;

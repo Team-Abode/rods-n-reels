@@ -1,7 +1,7 @@
 package com.teamabode.rodsnreels.core.registry;
 
 import com.teamabode.rodsnreels.RodsNReels;
-import com.teamabode.rodsnreels.common.entity.goldfish.Goldfish;
+import com.teamabode.rodsnreels.common.entity.goldfish.GoldfishEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -12,9 +12,9 @@ import net.minecraft.registry.Registry;
 
 public class RNREntityTypes {
 
-    public static final EntityType<Goldfish> GOLDFISH = register(
+    public static final EntityType<GoldfishEntity> GOLDFISH = register(
             "goldfish",
-            EntityType.Builder.create(Goldfish::new, SpawnGroup.CREATURE)
+            EntityType.Builder.create(GoldfishEntity::new, SpawnGroup.CREATURE)
                     .dimensions(0.5f, 0.3f)
                     .eyeHeight(0.195f)
                     .maxTrackingRange(4)
