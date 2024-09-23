@@ -26,8 +26,5 @@ public class RNRBlockLootTableProvider extends FabricBlockLootTableProvider {
     }
 
     @Override
-    public void generate() {
-        RegistryWrapper.Impl<Biome> registryLookup = this.registryLookup.getWrapperOrThrow(RegistryKeys.BIOME);
-        this.lootTables.put(RNRLootTables.GAMEPLAY_FISHIHG_JUNK, LootTable.builder().pool(LootPool.builder().with(ItemEntry.builder(Items.SWEET_BERRIES).conditionally(LocationCheckLootCondition.builder(LocationPredicate.Builder.create().biome(RegistryEntryList.of(registryLookup.getOrThrow(BiomeKeys.OLD_GROWTH_PINE_TAIGA), registryLookup.getOrThrow(BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA), registryLookup.getOrThrow(BiomeKeys.TAIGA), registryLookup.getOrThrow(BiomeKeys.SNOWY_TAIGA)))))).with(ItemEntry.builder(Items.GLOW_INK_SAC).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(10.0F))).conditionally(LocationCheckLootCondition.builder(LocationPredicate.Builder.createY(NumberRange.DoubleRange.atMost(30.0))))).with(ItemEntry.builder(Items.GLOW_BERRIES).conditionally(LocationCheckLootCondition.builder(LocationPredicate.Builder.createY(NumberRange.DoubleRange.atMost(30.0)))))));
-    }
+    public void generate() {}
 }

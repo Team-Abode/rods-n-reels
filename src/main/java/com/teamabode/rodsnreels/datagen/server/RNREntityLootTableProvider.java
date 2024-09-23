@@ -100,4 +100,9 @@ public class RNREntityLootTableProvider extends SimpleFabricLootTableProvider {
         condition.add(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.DIRECT_ATTACKER, hasSmeltsLootPredicate));
         return condition;
     }
+
+    @Override
+    public String getName() {
+        return "Entity Loot Tables";
+    }
 }

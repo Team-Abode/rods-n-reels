@@ -7,10 +7,6 @@ import com.teamabode.rodsnreels.datagen.server.tags.RNREntityTypeTagProvider;
 import com.teamabode.rodsnreels.datagen.server.tags.RNRItemTagProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.minecraft.registry.RegistryWrapper;
-
-import java.util.concurrent.CompletableFuture;
 
 public class RodsNReelsDataGenerator implements DataGeneratorEntrypoint {
     @Override
@@ -20,6 +16,7 @@ public class RodsNReelsDataGenerator implements DataGeneratorEntrypoint {
         // Server Data
         pack.addProvider(RNRBlockLootTableProvider::new);
         pack.addProvider(RNREntityLootTableProvider::new);
+        pack.addProvider(RNRFishingLootTableProvider::new);
         pack.addProvider(RNRRecipeProvider::new);
 
         // Tag Providers
