@@ -59,7 +59,7 @@ public class RNRFishingLootTableProvider extends SimpleFabricLootTableProvider {
                 .with(glowBerries)
                 .with(glowInkSac)
         );
-        exporter.accept(RNRLootTables.GAMEPLAY_FISHIHG_JUNK, lootTable);
+        exporter.accept(RNRLootTables.FISHING_JUNK_GAMEPLAY, lootTable);
     }
 
     private static LootCondition.Builder checkBiomes(RegistryWrapper.WrapperLookup lookup, TagKey<Biome> biomeTag) {

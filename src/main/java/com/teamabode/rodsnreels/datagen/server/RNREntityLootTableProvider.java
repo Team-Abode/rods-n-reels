@@ -12,7 +12,6 @@ import net.minecraft.loot.condition.AnyOfLootCondition;
 import net.minecraft.loot.condition.EntityPropertiesLootCondition;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextType;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.EnchantedCountIncreaseLootFunction;
@@ -64,7 +63,7 @@ public class RNREntityLootTableProvider extends SimpleFabricLootTableProvider {
                 .conditionally(RandomChanceLootCondition.builder(0.05f))
         );
 
-        exporter.accept(RNRLootTables.ENTITIES_GOLDFISH, lootTable);
+        exporter.accept(RNRLootTables.GOLDFISH_ENTITIES, lootTable);
     }
 
     private static void createSquidMeat(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> exporter, RegistryWrapper.WrapperLookup registryLookup) {
@@ -81,7 +80,7 @@ public class RNREntityLootTableProvider extends SimpleFabricLootTableProvider {
                         .apply(enchantedCountIncrease)
                 )
         );
-        exporter.accept(RNRLootTables.ENTITIES_SQUID_MEAT, lootTable);
+        exporter.accept(RNRLootTables.SQUID_MEAT_ENTITIES, lootTable);
     }
 
     private static AnyOfLootCondition.Builder shouldSmeltLoot(RegistryWrapper.WrapperLookup registryLookup) {
