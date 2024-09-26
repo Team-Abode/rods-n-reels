@@ -1,11 +1,12 @@
 package com.teamabode.rodsnreels.common.util;
 
+import com.teamabode.rodsnreels.RodsNReels;
 import com.teamabode.rodsnreels.core.registry.RNREnchantmentEffectComponentTypes;
+import com.teamabode.rodsnreels.core.registry.RNRParticleTypes;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
@@ -23,7 +24,7 @@ public class GalvanizeUtils {
     public static final float GALVANIZE_RANGE = 8.0f;
     public static final float GALVANIZE_DAMAGE_DIVIDER = 2.0f;
 
-    public static float getMaxGalvanizeTargets(ServerWorld world, ItemStack stack, Entity user) {
+    public static float getMaxTargets(ServerWorld world, ItemStack stack, Entity user) {
         ItemEnchantmentsComponent enchantmentsComponent = stack.getEnchantments();
         float count = 0.0f;
 
@@ -33,7 +34,7 @@ public class GalvanizeUtils {
             var galvanizeEffects = enchantment.getEffect(RNREnchantmentEffectComponentTypes.TRIDENT_MAX_GALVANIZE_TARGETS);
 
             for (var effectEntry : galvanizeEffects) {
-                var context = createEnchantedEntityLootContext(world, level, user, user.getPos());
+                var context = createContext(world, level, user, user.getPos());
                 var effect = effectEntry.effect();
 
                 if (!effectEntry.test(context)) continue;
@@ -44,34 +45,47 @@ public class GalvanizeUtils {
         return count;
     }
 
-    public static void applyGalvanizeEffects(ServerWorld world, int count, float damage, TridentEntity trident) {
+    public static void applyDamageEffects(ServerWorld world, int count, float damage, TridentEntity trident, Entity attacked) {
         List<Entity> entities = world.getOtherEntities(
-                trident,
+                attacked,
                 trident.getBoundingBox().expand(GALVANIZE_RANGE),
-                entity -> affectedByGalvanize(trident, entity)
+                entity -> isAffected(trident, entity)
         );
         int remaining = count;
+        Entity owner = trident.getOwner();
 
         for (Entity entity : entities) {
             if (remaining == 0) break;
 
             LivingEntity living = (LivingEntity) entity;
             living.damage(
-                    world.getDamageSources().trident(trident, trident.getOwner()),
+                    world.getDamageSources().trident(trident, owner == null ? trident : owner),
                     damage / GALVANIZE_DAMAGE_DIVIDER
             );
+            spawnParticles(world, trident.getPos(), living.getEyePos());
             remaining--;
         }
     }
 
-    public static boolean affectedByGalvanize(TridentEntity trident, Entity affected) {
+    public static void spawnParticles(ServerWorld world, Vec3d origin, Vec3d targetPos) {
+        Vec3d step = targetPos.subtract(origin).multiply(0.2d);
+        Vec3d currentPos = origin;
+
+        while (currentPos.distanceTo(targetPos) >= 0.15f) {
+            RodsNReels.LOGGER.info("Distance: {}", currentPos.distanceTo(targetPos));
+            currentPos = currentPos.add(step);
+            world.spawnParticles(RNRParticleTypes.ZAP, currentPos.x, currentPos.y, currentPos.z, 1, 0.0d, 0.0d, 0.0d, 0);
+        }
+    }
+
+    public static boolean isAffected(TridentEntity trident, Entity affected) {
         if (affected == trident.getOwner()) {
             return false;
         }
         return EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.and(EntityPredicates.VALID_LIVING_ENTITY).test(affected);
     }
 
-    public static LootContext createEnchantedEntityLootContext(ServerWorld world, int level, Entity entity, Vec3d pos) {
+    public static LootContext createContext(ServerWorld world, int level, Entity entity, Vec3d pos) {
         LootContextParameterSet parameters = new LootContextParameterSet.Builder(world)
                 .add(LootContextParameters.THIS_ENTITY, entity)
                 .add(LootContextParameters.ENCHANTMENT_LEVEL, level)

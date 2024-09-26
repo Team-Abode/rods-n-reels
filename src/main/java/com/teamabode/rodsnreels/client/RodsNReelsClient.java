@@ -1,11 +1,14 @@
 package com.teamabode.rodsnreels.client;
 
 import com.teamabode.rodsnreels.client.model.GoldfishModel;
+import com.teamabode.rodsnreels.client.particle.ZapParticle;
 import com.teamabode.rodsnreels.client.renderer.GoldfishRenderer;
 import com.teamabode.rodsnreels.core.registry.RNRBlocks;
 import com.teamabode.rodsnreels.core.registry.RNREntityTypes;
+import com.teamabode.rodsnreels.core.registry.RNRParticleTypes;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
@@ -20,6 +23,8 @@ public class RodsNReelsClient implements ClientModInitializer {
 
         EntityModelLayerRegistry.registerModelLayer(GoldfishModel.LAYER, GoldfishModel::createBodyLayer);
         EntityRendererRegistry.register(RNREntityTypes.GOLDFISH, GoldfishRenderer::new);
+
+        ParticleFactoryRegistry.getInstance().register(RNRParticleTypes.ZAP, ZapParticle.Factory::new);
     }
 
     public static float getOceanTrenchFogDistance(float y) {

@@ -2,6 +2,7 @@ package com.teamabode.rodsnreels.core.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import com.teamabode.rodsnreels.common.util.GalvanizeUtils;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.hit.EntityHitResult;
@@ -23,10 +24,10 @@ public class TridentEntityMixin {
     )
     private void rodsnreels$onEntityHit(EntityHitResult result, CallbackInfo ci, @Local float damage) {
         TridentEntity $this = TridentEntity.class.cast(this);
-        float enchantedCount = GalvanizeUtils.getMaxGalvanizeTargets((ServerWorld) $this.getWorld(), $this.getWeaponStack(), $this.getOwner());
+        float enchantedCount = GalvanizeUtils.getMaxTargets((ServerWorld) $this.getWorld(), $this.getWeaponStack(), $this.getOwner());
 
         if (enchantedCount >= 0.0f) {
-            GalvanizeUtils.applyGalvanizeEffects((ServerWorld) $this.getWorld(), MathHelper.floor(enchantedCount), damage, $this);
+            GalvanizeUtils.applyDamageEffects((ServerWorld) $this.getWorld(), MathHelper.floor(enchantedCount), damage, $this, result.getEntity());
         }
     }
 }
