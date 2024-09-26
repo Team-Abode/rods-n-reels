@@ -1,18 +1,19 @@
 {
-  "required": true,
-  "minVersion": "0.8",
-  "package": "com.teamabode.rodsnreels.core.mixin",
-  "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "DecoratedPotPatternsMixin",
-    "ChunkGeneratorSettingsMixins",
-    "VanillaBiomeParametersMixin"
-  ],
-  "client": [
-    "client.BackgroundRendererMixin",
-    "client.WorldRendererMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
+    "required": true,
+    "minVersion": "0.8",
+    "package": "com.teamabode.rodsnreels.core.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [
+        "ChunkGeneratorSettingsMixins",
+        "DecoratedPotPatternsMixin",
+        "TridentEntityMixin",
+        "VanillaBiomeParametersMixin"
+    ],
+    "client": [
+        "client.BackgroundRendererMixin",
+        "client.WorldRendererMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
   }
 }

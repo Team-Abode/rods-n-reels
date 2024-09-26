@@ -23,6 +23,8 @@ public class RodsNReels implements ModInitializer {
         RNRFeatures.register();
         RNRDecoratedPotPatterns.register();
         RNRStructureTypes.register();
+        RNREnchantmentEffectComponentTypes.register();
+        RNRParticleTypes.register();
         RNRSoundEvents.register();
 
         RNRPlacedFeatures.createBiomeModifications();

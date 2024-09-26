@@ -17,5 +17,18 @@
     "slots": [
         "mainhand"
     ],
-    "effects": {}
+    "effects": {
+        "rods_n_reels:trident_max_galvanize_targets": [
+            {
+                "effect": {
+                    "type": "minecraft:add",
+                    "value": {
+                        "type": "minecraft:linear",
+                        "base": 1,
+                        "per_level_above_first": 1
+                    }
+                }
+            }
+        ]
+    }
 }
