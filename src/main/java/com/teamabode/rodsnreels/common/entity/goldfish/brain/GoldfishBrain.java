@@ -1,20 +1,15 @@
-package com.teamabode.rodsnreels.common.entity.goldfish;
+package com.teamabode.rodsnreels.common.entity.goldfish.brain;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.entity.LivingEntity;
+import com.teamabode.rodsnreels.common.entity.goldfish.GoldfishEntity;
 import net.minecraft.entity.ai.brain.*;
 import net.minecraft.entity.ai.brain.sensor.Sensor;
 import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.entity.ai.brain.task.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.world.World;
 
-import javax.swing.text.html.Option;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 
 public class GoldfishBrain {
     public static final List<MemoryModuleType<?>> MEMORY_MODULES = List.of(

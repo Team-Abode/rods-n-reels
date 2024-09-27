@@ -13,6 +13,9 @@
   "enchantment.rods_n_reels.galvanize": "Galvanize",
 
   "entity.rods_n_reels.goldfish": "Goldfish",
+  "entity.rods_n_reels.goldfish.breed.ranchu": "Ranchu",
+  "entity.rods_n_reels.goldfish.breed.bubble_eye": "Bubble Eye",
+  "entity.rods_n_reels.goldfish.color.orange": "Orange",
 
   "subtitles.rods_n_reels.entity.goldfish.death": "Goldfish dies",
   "subtitles.rods_n_reels.entity.goldfish.flop": "Goldfish flops",

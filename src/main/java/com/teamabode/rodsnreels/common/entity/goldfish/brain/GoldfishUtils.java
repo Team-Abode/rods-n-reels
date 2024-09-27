@@ -1,5 +1,6 @@
-package com.teamabode.rodsnreels.common.entity.goldfish;
+package com.teamabode.rodsnreels.common.entity.goldfish.brain;
 
+import com.teamabode.rodsnreels.common.entity.goldfish.GoldfishEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.EntityLookTarget;

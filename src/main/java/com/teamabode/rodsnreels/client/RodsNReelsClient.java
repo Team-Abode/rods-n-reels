@@ -1,8 +1,8 @@
 package com.teamabode.rodsnreels.client;
 
-import com.teamabode.rodsnreels.client.model.GoldfishModel;
+import com.teamabode.rodsnreels.client.model.GoldfishEntityModel;
 import com.teamabode.rodsnreels.client.particle.ZapParticle;
-import com.teamabode.rodsnreels.client.renderer.GoldfishRenderer;
+import com.teamabode.rodsnreels.client.renderer.GoldfishEntityRenderer;
 import com.teamabode.rodsnreels.core.registry.RNRBlocks;
 import com.teamabode.rodsnreels.core.registry.RNREntityTypes;
 import com.teamabode.rodsnreels.core.registry.RNRParticleTypes;
@@ -21,8 +21,9 @@ public class RodsNReelsClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(RNRBlocks.BUBBLEDEW_STEM_PLANT, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(RNRBlocks.BUBBLEDEW_STEM, RenderLayer.getCutout());
 
-        EntityModelLayerRegistry.registerModelLayer(GoldfishModel.LAYER, GoldfishModel::createBodyLayer);
-        EntityRendererRegistry.register(RNREntityTypes.GOLDFISH, GoldfishRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(GoldfishEntityModel.RANCHU_LAYER, GoldfishEntityModel::getRanchuTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(GoldfishEntityModel.BUBBLE_EYE_LAYER, GoldfishEntityModel::getBubbleEyeTexturedModelData);
+        EntityRendererRegistry.register(RNREntityTypes.GOLDFISH, GoldfishEntityRenderer::new);
 
         ParticleFactoryRegistry.getInstance().register(RNRParticleTypes.ZAP, ZapParticle.Factory::new);
     }
