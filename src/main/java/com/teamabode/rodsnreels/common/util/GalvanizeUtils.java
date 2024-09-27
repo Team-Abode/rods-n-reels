@@ -3,6 +3,7 @@ package com.teamabode.rodsnreels.common.util;
 import com.teamabode.rodsnreels.RodsNReels;
 import com.teamabode.rodsnreels.core.registry.RNREnchantmentEffectComponentTypes;
 import com.teamabode.rodsnreels.core.registry.RNRParticleTypes;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
@@ -15,7 +16,12 @@ import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.RaycastContext;
+import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.Optional;
@@ -82,7 +88,15 @@ public class GalvanizeUtils {
         if (affected == trident.getOwner()) {
             return false;
         }
-        return EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.and(EntityPredicates.VALID_LIVING_ENTITY).test(affected);
+        if (EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.and(EntityPredicates.VALID_LIVING_ENTITY).test(affected)) {
+            return hasLineOfSight(trident.getWorld(), trident.getPos(), affected.getEyePos());
+        }
+        return false;
+    }
+
+    private static boolean hasLineOfSight(World world, Vec3d pos, Vec3d targetPos) {
+        BlockHitResult blockHitResult = world.raycast(new RaycastContext(targetPos, pos, RaycastContext.ShapeType.VISUAL, RaycastContext.FluidHandling.NONE, ShapeContext.absent()));
+        return blockHitResult.getBlockPos().equals(BlockPos.ofFloored(pos)) || blockHitResult.getType() == HitResult.Type.MISS;
     }
 
     public static LootContext createContext(ServerWorld world, int level, Entity entity, Vec3d pos) {
