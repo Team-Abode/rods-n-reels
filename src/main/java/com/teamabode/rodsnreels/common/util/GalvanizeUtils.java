@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class GalvanizeUtils {
     public static final float GALVANIZE_RANGE = 8.0f;
@@ -57,6 +58,13 @@ public class GalvanizeUtils {
                 trident.getBoundingBox().expand(GALVANIZE_RANGE),
                 entity -> isAffected(trident, entity)
         );
+        entities.sort((entityA, entityB) -> {
+            float distanceA = trident.distanceTo(entityA);
+            float distanceB = trident.distanceTo(entityB);
+
+            return (int) (distanceA - distanceB);
+        });
+
         int remaining = count;
         Entity owner = trident.getOwner();
 
