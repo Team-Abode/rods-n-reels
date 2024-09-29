@@ -7,7 +7,8 @@ import java.util.function.IntFunction;
 
 public enum GoldfishBreed implements StringIdentifiable {
     RANCHU(0, "ranchu"),
-    BUBBLE_EYE(1, "bubble_eye");
+    COMET(1, "comet"),
+    BUBBLE_EYE(2, "bubble_eye");
 
     private static final IntFunction<GoldfishBreed> BY_ID = ValueLists.createIdToValueFunction(GoldfishBreed::getId, values(), ValueLists.OutOfBoundsHandling.ZERO);
 

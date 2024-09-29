@@ -6,7 +6,11 @@ import net.minecraft.util.function.ValueLists;
 import java.util.function.IntFunction;
 
 public enum GoldfishColor implements StringIdentifiable {
-    ORANGE(0, "orange");
+    ORANGE(0, "orange"),
+    LEMON(1, "lemon"),
+    BRONZE(2, "bronze"),
+    BLACK(3, "black"),
+    ALBINO(4, "albino");
 
     private static final IntFunction<GoldfishColor> BY_ID = ValueLists.createIdToValueFunction(GoldfishColor::getId, values(), ValueLists.OutOfBoundsHandling.ZERO);
 

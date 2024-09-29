@@ -6,7 +6,6 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.passive.FishEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
@@ -21,7 +20,7 @@ public class RNREntityTypes {
     );
 
     public static void register() {
-        FabricDefaultAttributeRegistry.register(GOLDFISH, FishEntity.createFishAttributes());
+        FabricDefaultAttributeRegistry.register(GOLDFISH, GoldfishEntity.createGoldfishAttributes());
     }
 
     private static <T extends Entity> EntityType<T> register(String name, EntityType.Builder<T> builder) {

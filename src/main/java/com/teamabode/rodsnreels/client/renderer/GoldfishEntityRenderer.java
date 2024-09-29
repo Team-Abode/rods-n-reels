@@ -16,18 +16,21 @@ import net.minecraft.util.math.RotationAxis;
 
 public class GoldfishEntityRenderer extends MobEntityRenderer<GoldfishEntity, SinglePartEntityModel<GoldfishEntity>> {
     private final SinglePartEntityModel<GoldfishEntity> ranchuModel;
+    private final SinglePartEntityModel<GoldfishEntity> cometModel;
     private final SinglePartEntityModel<GoldfishEntity> bubbleEyeModel;
 
     public GoldfishEntityRenderer(EntityRendererFactory.Context context) {
         super(context, new GoldfishEntityModel(context.getPart(GoldfishEntityModel.RANCHU_LAYER)), 0.25f);
 
         this.ranchuModel = new GoldfishEntityModel(context.getPart(GoldfishEntityModel.RANCHU_LAYER));
+        this.cometModel = new GoldfishEntityModel(context.getPart(GoldfishEntityModel.COMET_LAYER));
         this.bubbleEyeModel = new GoldfishEntityModel(context.getPart(GoldfishEntityModel.BUBBLE_EYE_LAYER));
     }
 
     public SinglePartEntityModel<GoldfishEntity> getModel(GoldfishBreed breed) {
         return switch (breed) {
             case RANCHU -> this.ranchuModel;
+            case COMET -> this.cometModel;
             case BUBBLE_EYE -> this.bubbleEyeModel;
         };
     }

@@ -22,6 +22,7 @@ public class RodsNReelsClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(RNRBlocks.BUBBLEDEW_STEM, RenderLayer.getCutout());
 
         EntityModelLayerRegistry.registerModelLayer(GoldfishEntityModel.RANCHU_LAYER, GoldfishEntityModel::getRanchuTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(GoldfishEntityModel.COMET_LAYER, GoldfishEntityModel::getCometTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(GoldfishEntityModel.BUBBLE_EYE_LAYER, GoldfishEntityModel::getBubbleEyeTexturedModelData);
         EntityRendererRegistry.register(RNREntityTypes.GOLDFISH, GoldfishEntityRenderer::new);
 

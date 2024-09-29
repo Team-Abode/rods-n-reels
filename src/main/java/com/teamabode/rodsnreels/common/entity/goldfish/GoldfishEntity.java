@@ -8,15 +8,17 @@ import com.teamabode.rodsnreels.common.entity.goldfish.variant.GoldfishColor;
 import com.teamabode.rodsnreels.common.entity.goldfish.variant.GoldfishData;
 import com.teamabode.rodsnreels.core.registry.RNRItems;
 import com.teamabode.rodsnreels.core.registry.RNRSoundEvents;
-import net.jpountz.util.Utils;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.brain.Brain;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.FishEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -40,6 +42,10 @@ public class GoldfishEntity extends FishEntity {
 
     public GoldfishEntity(EntityType<? extends GoldfishEntity> entityType, World level) {
         super(entityType, level);
+    }
+
+    public static DefaultAttributeContainer.Builder createGoldfishAttributes() {
+        return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0d);
     }
 
     public void spawnHeartParticles() {
