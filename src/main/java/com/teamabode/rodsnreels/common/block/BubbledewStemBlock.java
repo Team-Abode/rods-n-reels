@@ -28,11 +28,13 @@ import org.jetbrains.annotations.Nullable;
 public class BubbledewStemBlock extends AbstractPlantStemBlock implements FluidFillable {
     public static final MapCodec<BubbledewStemBlock> CODEC = BubbledewStemBlock.createCodec(BubbledewStemBlock::new);
     public static final BooleanProperty ATTACHED = Properties.ATTACHED;
+    private final double fruitChance;
 
     protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 9.0, 16.0);
 
     public BubbledewStemBlock(Settings properties) {
         super(properties, Direction.UP, SHAPE, true, 0.14);
+        this.fruitChance = 0.14d;
 
         this.setDefaultState(this.stateManager.getDefaultState().with(ATTACHED, false).with(AGE, 0));
     }
@@ -49,26 +51,35 @@ public class BubbledewStemBlock extends AbstractPlantStemBlock implements FluidF
     }
 
     @Override
-    protected void randomTick(BlockState blockState, ServerWorld serverLevel, BlockPos blockPos, Random randomSource) {
-        if (randomSource.nextInt(1) != 0) return;
+    protected void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if (state.get(AGE) < 25) {
+            super.randomTick(state, world, pos, random);
+            return;
+        }
+        if (random.nextDouble() >= this.fruitChance) return;
 
-        BlockState aboveBlockstate = serverLevel.getBlockState(blockPos.up());
+        BlockState aboveState = world.getBlockState(pos.up());
 
-        if(!aboveBlockstate.isOf(Blocks.WATER)) return;
+        if (!aboveState.isOf(Blocks.WATER)) return;
 
-        serverLevel.setBlockState(blockPos.up(), RNRBlocks.BUBBLEDEW.getDefaultState());
-        serverLevel.setBlockState(blockPos, blockState.with(ATTACHED, true));
+        world.setBlockState(pos.up(), RNRBlocks.BUBBLEDEW.getDefaultState());
+        world.setBlockState(pos, state.with(ATTACHED, true));
     }
 
     @Override
-    protected BlockState getStateForNeighborUpdate(BlockState blockState, Direction direction, BlockState otherState, WorldAccess levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
-        BlockState state = super.getStateForNeighborUpdate(blockState, direction, otherState, levelAccessor, blockPos, blockPos2);
+    protected boolean hasRandomTicks(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected BlockState getStateForNeighborUpdate(BlockState blockState, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        BlockState state = super.getStateForNeighborUpdate(blockState, direction, neighborState, world, pos, neighborPos);
 
         if(!state.isOf(blockState.getBlock())) return state;
 
         if(direction != Direction.UP) return state;
 
-        if (otherState.isOf(RNRBlocks.BUBBLEDEW)) return state;
+        if (neighborState.isOf(RNRBlocks.BUBBLEDEW)) return state;
 
         return blockState.with(ATTACHED, false);
     }

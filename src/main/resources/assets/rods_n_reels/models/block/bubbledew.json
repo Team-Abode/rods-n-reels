@@ -1,0 +1,36 @@
+{
+	"parent": "minecraft:block/block",
+	"textures": {
+		"particle": "rods_n_reels:block/bubbledew_side",
+		"top": "rods_n_reels:block/bubbledew_top",
+		"side": "rods_n_reels:block/bubbledew_side",
+		"inside": "rods_n_reels:block/bubbledew_inside"
+	},
+	"elements": [
+		{
+			"from": [2, 2, 2],
+			"to": [14, 14, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 2, 2]},
+			"faces": {
+				"north": {"uv": [2, 2, 14, 14], "texture": "#inside"},
+				"east": {"uv": [2, 2, 14, 14], "texture": "#inside"},
+				"south": {"uv": [2, 2, 14, 14], "texture": "#inside"},
+				"west": {"uv": [2, 2, 14, 14], "texture": "#inside"},
+				"up": {"uv": [2, 2, 14, 14], "texture": "#inside"},
+				"down": {"uv": [2, 2, 14, 14], "texture": "#inside"}
+			}
+		},
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "south"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#top", "cullface": "up"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#top", "cullface": "down"}
+			}
+		}
+	]
+}

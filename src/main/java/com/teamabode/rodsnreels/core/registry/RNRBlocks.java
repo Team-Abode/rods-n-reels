@@ -21,10 +21,11 @@ public class RNRBlocks {
             new BubbledewBlock(Settings.create()
                     .mapColor(MapColor.BRIGHT_TEAL)
                     .instrument(NoteBlockInstrument.DIDGERIDOO)
-                    .strength(1.0f)
+                    .strength(0.25f)
                     .sounds(BlockSoundGroup.WOOD)
                     .pistonBehavior(PistonBehavior.DESTROY)
                     .luminance(state -> 15)
+                    .nonOpaque()
     ));
     public static final Block BUBBLEDEW_STEM_PLANT = registerWithoutItem(
             "bubbledew_stem_plant",

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "rods_n_reels:block/bubbledew_top",
-    "side": "rods_n_reels:block/bubbledew_side"
-  }
-}

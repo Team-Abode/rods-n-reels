@@ -1,6 +1,5 @@
 package com.teamabode.rodsnreels.datagen.client;
 
-import com.teamabode.rodsnreels.core.registry.RNRBlocks;
 import com.teamabode.rodsnreels.core.registry.RNRItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -13,7 +12,7 @@ public class RNRModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator generator) {
-        generator.registerSingleton(RNRBlocks.BUBBLEDEW, TexturedModel.CUBE_COLUMN);
+
     }
 
     @Override

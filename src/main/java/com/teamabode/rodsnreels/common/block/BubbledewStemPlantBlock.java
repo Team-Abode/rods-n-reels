@@ -27,7 +27,7 @@ public class BubbledewStemPlantBlock extends AbstractPlantBlock implements Fluid
 
     @Override
     public boolean canAttachTo(BlockState state) {
-        return ((BubbledewStemBlock) this.getStem()).canAttachTo(state);
+        return this.getStem().canAttachTo(state);
     }
 
     @Override
