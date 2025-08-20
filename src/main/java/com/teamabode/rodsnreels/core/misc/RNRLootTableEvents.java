@@ -1,25 +1,39 @@
 package com.teamabode.rodsnreels.core.misc;
 
+import com.teamabode.rodsnreels.RodsNReels;
+import com.teamabode.rodsnreels.common.loot.EnchantedToolCountIncreaseLootFunction;
 import com.teamabode.rodsnreels.core.registry.RNRItems;
 import com.teamabode.rodsnreels.core.registry.RNRLootTables;
+import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LootTableEntry;
+import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.util.Identifier;
 
 public class RNRLootTableEvents {
+    private static final Identifier REELING_BONUS_PHASE = RodsNReels.id("reeling_bonus_phase");
+
     public static void modifyVanillaLootTables() {
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             if (key.equals(LootTables.FISHING_FISH_GAMEPLAY)) {
-                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(RNRItems.SQUID).weight(15)));
+                tableBuilder.modifyPools(builder -> builder.with(ItemEntry.builder(RNRItems.SQUID).weight(15)));
             }
             if (key.equals(LootTables.FISHING_JUNK_GAMEPLAY)) {
                 tableBuilder.modifyPools(builder -> builder.with(LootTableEntry.builder(RNRLootTables.FISHING_JUNK_GAMEPLAY).weight(30)));
             }
             if (key.equals(EntityType.SQUID.getLootTableId()) || key.equals(EntityType.GLOW_SQUID.getLootTableId())) {
                 tableBuilder.pool(LootPool.builder().with(LootTableEntry.builder(RNRLootTables.SQUID_MEAT_ENTITIES)));
+            }
+        });
+
+        LootTableEvents.MODIFY.addPhaseOrdering(Event.DEFAULT_PHASE, REELING_BONUS_PHASE);
+        LootTableEvents.MODIFY.register(REELING_BONUS_PHASE, (key, tableBuilder, source, registries) -> {
+            if (key.equals(LootTables.FISHING_FISH_GAMEPLAY)) {
+                tableBuilder.apply(EnchantedToolCountIncreaseLootFunction.builder(registries, UniformLootNumberProvider.create(0.0f, 1.0f)));
             }
         });
     }

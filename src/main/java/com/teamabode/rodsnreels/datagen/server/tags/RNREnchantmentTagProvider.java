@@ -18,11 +18,17 @@ public class RNREnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup lookup) {
+        this.getOrCreateTagBuilder(RNREnchantmentTags.FISHING_EXCLUSIVE_SET)
+                .add(Enchantments.LUCK_OF_THE_SEA).add(RNREnchantments.REELING);
+
         this.getOrCreateTagBuilder(RNREnchantmentTags.GALVANIZE_EXCLUSIVE_SET)
                 .add(Enchantments.CHANNELING);
 
         this.getOrCreateTagBuilder(EnchantmentTags.RIPTIDE_EXCLUSIVE_SET)
                 .add(RNREnchantments.GALVANIZE);
+
+        this.getOrCreateTagBuilder(EnchantmentTags.NON_TREASURE)
+                .add(RNREnchantments.REELING);
 
         this.getOrCreateTagBuilder(EnchantmentTags.TREASURE)
                 .add(RNREnchantments.GALVANIZE);

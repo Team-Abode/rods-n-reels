@@ -38,7 +38,10 @@
         "provider": {
           "type": "minecraft:simple_state_provider",
           "state": {
-            "Name": "rods_n_reels:bubbledew"
+            "Name": "rods_n_reels:bubbledew",
+            "Properties": {
+              "waterlogged": "true"
+            }
           }
         }
       }

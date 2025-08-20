@@ -18,12 +18,14 @@ import java.util.Optional;
 
 public class RNREnchantments {
     public static final RegistryKey<Enchantment> GALVANIZE = createKey("galvanize");
+    public static final RegistryKey<Enchantment> REELING = createKey("reeling");
 
     public static void register(Registerable<Enchantment> registry) {
         var items = registry.getRegistryLookup(RegistryKeys.ITEM);
         var enchantments = registry.getRegistryLookup(RegistryKeys.ENCHANTMENT);
 
         registry.register(GALVANIZE, createGalvanize(items, enchantments));
+        registry.register(REELING, createReeling(items, enchantments));
     }
 
     private static Enchantment createGalvanize(RegistryEntryLookup<Item> items, RegistryEntryLookup<Enchantment> enchantments) {
@@ -50,6 +52,28 @@ public class RNREnchantments {
                 definition,
                 galvanizeExclusiveSet,
                 components.build()
+        );
+    }
+
+    private static Enchantment createReeling(RegistryEntryLookup<Item> items, RegistryEntryLookup<Enchantment> enchantments) {
+        var fishingEnchantable = items.getOrThrow(ItemTags.FISHING_ENCHANTABLE);
+        var fishingExclusiveSet = enchantments.getOrThrow(RNREnchantmentTags.FISHING_EXCLUSIVE_SET);
+
+        Enchantment.Definition definition = new Enchantment.Definition(
+                fishingEnchantable,
+                Optional.empty(),
+                2, 2,
+                new Enchantment.Cost(15, 9),
+                new Enchantment.Cost(65, 9),
+                4,
+                List.of(AttributeModifierSlot.HAND)
+        );
+
+        return new Enchantment(
+                Text.translatable("enchantment.rods_n_reels.reeling"),
+                definition,
+                fishingExclusiveSet,
+                ComponentMap.EMPTY
         );
     }
 

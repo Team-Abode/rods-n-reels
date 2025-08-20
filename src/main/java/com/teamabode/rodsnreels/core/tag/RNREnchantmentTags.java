@@ -6,6 +6,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 
 public class RNREnchantmentTags {
+    public static final TagKey<Enchantment> FISHING_EXCLUSIVE_SET = create("exclusive_set/fishing");
     public static final TagKey<Enchantment> GALVANIZE_EXCLUSIVE_SET = create("exclusive_set/galvanize");
 
     private static TagKey<Enchantment> create(String name) {
